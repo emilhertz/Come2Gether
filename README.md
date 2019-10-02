@@ -1,7 +1,7 @@
 # Come2Gether
 
 ## Præsentation af system
-Vi forestiller os at lave et administrativt system, kaldet Come2Gether. Formålet for Come2Gether er at formidle social aktiviteter for ubekendte mennesker i forskellige byer, med det formål at skabe nye sociale relationer. Dette vil især være relevant for mennesker, som netop er flyttet et nyt sted hen, og skal til at etablere sig en ny omgangskreds. Det kan også være interessant for nuværende beboere der ønsker at udvide deres omgangskreds, med diverse arrangementer og aktiviteter. 
+Vi forestiller os at lave et administrativt system, kaldet Come2Gether. Formålet for Come2Gether er at formidle sociale aktiviteter for ubekendte mennesker i forskellige byer, med det formål at skabe nye sociale relationer. Dette vil især være relevant for mennesker, som netop er flyttet et nyt sted hen, og skal til at etablere sig en ny omgangskreds. Det kan også være interessant for nuværende beboere der ønsker at udvide deres omgangskreds, med diverse arrangementer og aktiviteter. 
 
 For at bruge systemet, skal man enten oprette en joinUser eller hostUser. Som joinUser vil man have mulighed for at deltage i events, som er lokalitets-, aktivitets- og tidsbestemte. Som hostUser vil man have mulighed for at oprette førnævnte events. Vi forestiller os, at et event i Come2Gether systemet kunne se således ud:  
 
