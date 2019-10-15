@@ -1,27 +1,22 @@
 
 /* Add a black background color to the top navigation */
-#top-menu-bar {
+#topnav {
+    list-style-type: none;
     background-color: lightgrey;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
 }
 
 /* Style the links inside the navigation bar */
 #topnav a {
     float: left;
-    color: #f2f2f2;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
 }
-#topnav a:link {
-    color: blue;
-}
-
-#topnav a:visited {
-    color: purple;
-}
-
 
 /* Change the color of links on hover */
 #topnav a:hover {
@@ -39,9 +34,7 @@
     float: right;
     padding: 100px;
     margin-top: 8px;
-    margin-left: 100px;
-    margin-right: 0px;
-    background: lightgrey;
+    background: blue;
     font-size: 17px;
     border: none;
     cursor: pointer;
