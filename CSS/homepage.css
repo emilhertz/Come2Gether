@@ -28,13 +28,38 @@
     color: white;
 }
 
-#topnav .login-container button {
+#button .login-container button {
     float: right;
-    padding: 6px;
+    padding: 100px;
     margin-top: 8px;
+    margin-left: 300px;
     margin-right: 16px;
     background: lightgrey;
     font-size: 17px;
     border: none;
     cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: lightgrey;
+}
+
+li {
+    float: left;
+}
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Ændre farven på knappen, når man holder sin mus hen over den */
+li a:hover {
+    background-color: #111111;
 }
