@@ -38,9 +38,10 @@ loginButton.onclick = function (e) {
 //Funktion der kan tilføje og slette brugere (push-pop nested array)
 var createButton = document.getElementById("create_user");
 createButton.onclick = function (d) {
+    //Funktion der forhindrer opdatering af konsol
     d.preventDefault();
-    user.push(document.getElementById(username.value));
-    console.log(user)
+
+    console.log("virker")
 };
 
 
