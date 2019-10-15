@@ -35,4 +35,4 @@ submitButton.onclick = function (e) {
 
 }
 
-//Lav funktion der kan tilføje og slette brugere (push-pop nested array)
+//Funktion der kan tilføje og slette brugere (push-pop nested array)
