@@ -3,7 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Opret bruger</title>
+
+    <link rel="stylesheet" type="text/css" href="/..CSS/homepage.css">
+
 </head>
+<div id=".topnav">
+    Default navne til siderne
+
+    <a class="active" href="about_us.html">Om os</a>
+    <a href="Events'.html">Events</a>
+    <a href="home.html">Hjem</a>
+    <a href="Login.html">Login</a>
+    <a href="opretbruger.html">Opret bruger</a>
+
+   
+
 <body>
 <form>
     Navn:
@@ -93,9 +107,11 @@
 
     <br/>
     <!-- Submit button to activate some function -->
-    <button type="submit" onclick="validateContactInformation()" method="POST" style="cursor: pointer;">Opret bruger</button>
+    <button type="submit" id=create_user formmethod="POST" style="cursor: pointer;">Opret bruger</button>
     <br/>
 
 </form>
+
+<script src="../Functions/login.js"></script>
 </body>
 </html>
