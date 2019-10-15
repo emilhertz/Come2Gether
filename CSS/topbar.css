@@ -2,7 +2,7 @@
 /* Add a black background color to the top navigation */
 #topnav {
     list-style-type: none;
-    background-color: lightgrey;
+    background-color: #868988;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -25,10 +25,9 @@
 }
 
 /* Add a color to the active/current link */
-#topnav a.active {
-    background-color: #4CAF50;
-    color: white;
+
 }
+
 
 
 
