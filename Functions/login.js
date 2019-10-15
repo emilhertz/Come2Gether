@@ -16,8 +16,8 @@ var user = [
     ];
 
 //for-loop, der går gennem user-array og tjekker om username eksisterer, og om password stemmer overens.
-var submitButton = document.getElementById("submit")
-submitButton.onclick = function (e) {
+var loginButton = document.getElementById("login")
+loginButton.onclick = function (e) {
     //Funktion der forhindrer opdatering af konsol
     e.preventDefault()
 
@@ -36,3 +36,8 @@ submitButton.onclick = function (e) {
 }
 
 //Funktion der kan tilføje og slette brugere (push-pop nested array)
+var createButton = document.getElementById()
+createUser(){
+    user.push(document.getElementById(username.value))
+    console.log(user)
+}
