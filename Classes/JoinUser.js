@@ -1,4 +1,4 @@
-class JoinUser extends User {
+class JoinUser extends SuperUser {
     constructor(username, Categories, pastJoinedEvents) {
         super(username);
         this._Categories = Categories;

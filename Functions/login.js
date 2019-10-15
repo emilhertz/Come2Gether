@@ -1,19 +1,7 @@
 //Denne  funktion er ikke færdig, men virker i praksis
 //user array(nested) - database der indeholder username og password
-var user = [
-    {
-        username: "peter",
-        password: "kanin"
-    },
-    {
-        username: "thomas",
-        password: "tog"
-    },
-    {
-        username: "jens",
-        password: "ole"
-    }
-    ];
+var user = [];
+user.push(new SuperUser("Peter", "Kanin"));
 
 //for-loop, der går gennem user-array og tjekker om username eksisterer, og om password stemmer overens.
 var loginButton = document.getElementById("login");
@@ -32,17 +20,23 @@ loginButton.onclick = function (e) {
         }
     }
     console.log("Forkert brugernavn eller password :(")
-
 };
 
 //Funktion der kan tilføje og slette brugere (push-pop nested array)
-var createButton = document.getElementById("create_user");
-createButton.onclick = function (d) {
-    //Funktion der forhindrer opdatering af konsol
-    d.preventDefault();
-
+function createUser() {
     console.log("virker")
+}
+
+function testUser() {
+    user.push({username: "test", password: "tester"});
+}
+
+function testUser2() {
+    var username = document.getElementById("username");
+    var password = document.getElementById("password");
+    user.push({username: username.value, password: password.value})
+}
+
+function showUser(){
+  console.log(user)
 };
-
-
-

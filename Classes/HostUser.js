@@ -1,4 +1,4 @@
-class HostUser extends User {
+class HostUser extends SuperUser {
     costructor(username, pastHostedEvents) {
         super(username);
         this._pastHostedEvents = pastHostedEvents;
