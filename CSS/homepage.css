@@ -30,14 +30,5 @@
     color: white;
 }
 
-#topnav a.login-container button {
-    float: right;
-    padding: 100px;
-    margin-top: 8px;
-    background: blue;
-    font-size: 17px;
-    border: none;
-    cursor: pointer;
-}
 
 
