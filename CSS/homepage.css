@@ -41,13 +41,6 @@
 }
 
 /* hej */
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: lightgrey;
-}
 
 li {
     float: left;
@@ -64,3 +57,7 @@ li a {
 li a:hover {
     background-color: #111111;
 }
+
+<ul>
+    <li><a href="#home">Home</a>>/li>
+    <li><a href
