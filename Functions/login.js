@@ -16,10 +16,10 @@ var user = [
     ];
 
 //for-loop, der går gennem user-array og tjekker om username eksisterer, og om password stemmer overens.
-var loginButton = document.getElementById("login")
+var loginButton = document.getElementById("login");
 loginButton.onclick = function (e) {
     //Funktion der forhindrer opdatering af konsol
-    e.preventDefault()
+    e.preventDefault();
 
     //Henter information fra login-side
     var username = document.getElementById("loginUsername");
@@ -27,17 +27,21 @@ loginButton.onclick = function (e) {
 
     for (i=0; i<user.length; i++){
         if (username.value === user[i].username && password.value === user[i].password){
-            console.log(username.value + " er logget ind!")
+            console.log(username.value + " er logget ind!");
             return
         }
     }
     console.log("Forkert brugernavn eller password :(")
 
-}
+};
 
 //Funktion der kan tilføje og slette brugere (push-pop nested array)
-var createButton = document.getElementById()
-createUser(){
-    user.push(document.getElementById(username.value))
+var createButton = document.getElementById("create_user");
+createButton.onclick = function (d) {
+    d.preventDefault();
+    user.push(document.getElementById(username.value));
     console.log(user)
-}
+};
+
+
+
