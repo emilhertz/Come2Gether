@@ -1,9 +1,10 @@
 public class Categories {
+//ingen mellemrum i enum
     enum Level {
         Food,
         Sport,
-        Going out,
+        Going_out,
         Culture,
-        Concert
+        Concert,
     }
 }
