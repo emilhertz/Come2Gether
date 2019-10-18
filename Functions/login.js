@@ -1,3 +1,8 @@
+var login_status = false;
+var login_status_string = login_status.toString();
+
+localStorage.setItem("login_status", "false");
+
 //Denne funktion henter listOfSuperUsers-array fra User.jsogin-funktion, der aktiveres når submit-knap med id="login" trykkes
 var loginButton = document.getElementById("login");
 loginButton.onclick = function (e) {
@@ -13,7 +18,8 @@ loginButton.onclick = function (e) {
         if (username.value === listOfUsers[i].username && password.value === listOfUsers[i].password){
             //  Gem username i localstorage
             localStorage.setItem("username", username.value);
-            // (i fremtiden) Sæt login_status til true
+            // Sæt login_status til true
+            localStorage.setItem("login_status", "true");
             // Åbner home.html
             window.open("../HTML/home.html", "_self")
             return
