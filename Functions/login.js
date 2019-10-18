@@ -21,9 +21,16 @@ loginButton.onclick = function (e) {
             // Sæt login_status til true
             localStorage.setItem("login_status", "true");
             // Åbner home.html
-            window.open("../HTML/home.html", "_self")
+            window.open("../HTML/home.html", "_self");
             return
         }
     }
     alert("Forkert brugernavn eller password :(")
 };
+
+//Log-ud funktion
+function logout() {
+    localStorage.removeItem("username");
+    localStorage.setItem("login_status", "false");
+    window.open("../HTML/home.html", "_self");
+}
