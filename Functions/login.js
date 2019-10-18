@@ -1,8 +1,3 @@
-var login_status = false;
-var login_status_string = login_status.toString();
-
-localStorage.setItem("login_status", "false");
-
 //Denne funktion henter listOfSuperUsers-array fra User.jsogin-funktion, der aktiveres når submit-knap med id="login" trykkes
 var loginButton = document.getElementById("login");
 loginButton.onclick = function (e) {

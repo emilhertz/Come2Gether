@@ -28,15 +28,18 @@
     <a class="active" href="about_us.html">Om os</a>
     <a href="opretEvent.html">Opret event</a>
 
-
-
     <li style="float:right"><a href="Login.html">Login</a></li>
     <li style="float: right"><a onclick="logout()">Log ud</a></li>
     </div>
 
 
 <body>
-<h3><script>document.write("Velkommen til " + localStorage.getItem("username") + "!")</script></h3>
+
+<!-- Funktion der ser om login_status er true, og så byder velkommen -->
+<h3><script>
+    if (localStorage.getItem("login_status") === "true") {
+    document.write("Velkommen til " + localStorage.getItem("username") + "!")}
+</script></h3>
 <h2>Velkommen til Come2Gether</h2>
 
 I menuen kan du se nogle af de forskellige muligheder du har. Dette indebærre blandt andet at kigge vores udbud af events ud og at oprette en bruger så du kan tilmelde dig til et ønsket event.
