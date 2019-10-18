@@ -5,6 +5,3 @@ class Event {
     this._Categories = Categories;
     this._eventTime = eventTime;
     this._eventDescription = eventDescription;
-
-    }
-}
