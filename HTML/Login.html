@@ -4,24 +4,39 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="../CSS/topbar.css">
+    <link rel="stylesheet" href="../CSS/login.css">
     <link href="https://fonts.googleapis.com/css?family=Advent Pro"
           rel="stylesheet">
     <style>
+
         body {
             background-color: #cdccd0;
             font-family: Advent Pro; font-size: large;
         }
         h1 {color: black;}
         p {color: black;}
+
+
     </style>
 </head>
-
+<style>
+    input [type=text], select {
+        width: 50%;
+        padding: 12xp 20xp;
+        margin: 8px0;
+        display: inline-block;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+</style>
 <h1 align="center">Come2Gether</h1>
 
 
 <body>
 
 <!-- Form til indtastning af login -->
+<h3 align="center">
 <form>
 Brugernavn:
 <br/>
@@ -38,6 +53,7 @@ Password:
 <button type="submit" id=login formmethod="post" style="cursor: pointer;">Login</button>
 <br/>
 </form>
+</h3>
 
 <script src="../Classes/Users.js"></script>
 <script src="../Functions/login.js"></script>

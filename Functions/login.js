@@ -22,10 +22,3 @@ loginButton.onclick = function (e) {
     }
     alert("Forkert brugernavn eller password :(")
 };
-
-//Log-ud funktion
-function logout() {
-    localStorage.removeItem("username");
-    localStorage.setItem("login_status", "false");
-    window.open("../HTML/home.html", "_self");
-}
