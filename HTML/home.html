@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>
-        Come2Gether
-    </title>
-    <!--https://www.nemprogrammering.dk/forum/viewtopic.php?t=388 Gør at html dokumentet kan læse æø og å-->
+    <title>Come2Gether</title>
+    <!--https://www.nemprogrammering.dk/forum/viewtopic.php?t=388 Gør at html dokumentet kan læse æ,ø og å-->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="../CSS/topbar.css">
-    <link href="https://fonts.googleapis.com/css?family=Advent Pro"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Advent Pro" rel="stylesheet">
+    <!-- Styling af hjemmeside -->
     <style>
         body {
             background-color: #cdccd0;
@@ -21,6 +19,7 @@
 
 <h1 align="center">Come2Gether</h1>
 
+<!-- Navigationsbar -->
 <div id="topnav">
     <!--Default navne til siderne -->
     <a href="home.html">Hjem</a>
@@ -36,15 +35,35 @@
     </div>
 
 <body>
+<h2>Velkommen til Come2Gether</h2>
+<!-- Funktioner der ser om login_status er false, og giver præsentation af projekt (Find ud af newline og sammenflet funktioner til én!) -->
+<p><script>
+    if (localStorage.getItem("login_status") !== "true") {
+        document.write("Med Come2Gether har du mulighed for at møde nye mennesker gennem vores forskellige Event's, der er arrangement af vores store netværk frivillige brugere.");
+    }
+</script></p>
 
-<!-- Funktion der ser om login_status er true, og så byder velkommen -->
+<p><script>
+    if (localStorage.getItem("login_status") !== "true") {
+        document.write("Prøv at deltage i alt fra Fodboldturneringer til madlavningskurser, og skab nye venskaber med folk, du ellers aldrig ville have mødt!")
+    }
+</script></p>
+
+<p><script>
+    if (localStorage.getItem("login_status") !== "true") {
+        document.write("Opret en bruger, og deltag i dit første Event allerede i dag!")
+    }
+</script></p>
+
+<!-- Eksisterende bruger? -->
+
+<!-- Funktion der ser om login_status er true, og byder velkommen til eksisterende bruger -->
 <h3><script>
     if (localStorage.getItem("login_status") === "true") {
-    document.write("Velkommen " + localStorage.getItem("username") + "!")}
+    document.write("Hej " + localStorage.getItem("username") + "!")}
 </script></h3>
-<h2>Velkommen til Come2Gether</h2>
 
-I menuen kan du se nogle af de forskellige muligheder du har. Dette indebærre blandt andet at kigge vores udbud af events ud og at oprette en bruger så du kan tilmelde dig til et ønsket event.
+<!-- Kommentar om at se ugens begivenhed eller begivenheder i nærheden. -->
 
 <script src="../Functions/logout.js"></script>
 </body>
