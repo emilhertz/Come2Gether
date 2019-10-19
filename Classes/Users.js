@@ -1,5 +1,5 @@
 // User-klasse
-class User {
+class Users {
     constructor(username, password, age, location, pastJoinedEvents, pastHostedEvents) {
         this.username = username;
         this.password = password;
@@ -11,12 +11,12 @@ class User {
 }
 
 // Array der bruges til login-process
-let listOfUsers = [];
+//let listOfUsers = [];
 
 // Hardcodede værdier til array
-listOfUsers.push(new User("Thorn", "Password", 32, "København","Ingen", "Ingen"));
-listOfUsers.push(new User("Thomas", "Tog", 90, "Togskinnerne", "Ingen", "Ingen"));
-listOfUsers.push(new User("Peter", "Kanin", 300, "Hareskoven", "Ingen", "Ingen"));
+//listOfUsers.push(new User("Thorn", "Password", 32, "København","Ingen", "Ingen"));
+//listOfUsers.push(new User("Thomas", "Tog", 90, "Togskinnerne", "Ingen", "Ingen"));
+//listOfUsers.push(new User("Peter", "Kanin", 300, "Hareskoven", "Ingen", "Ingen"));
 
 // Liste af login i konsol
-console.log(listOfUsers);
+//console.log(listOfUsers);

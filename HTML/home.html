@@ -36,22 +36,12 @@
 
 <body>
 <h2>Velkommen til Come2Gether</h2>
-<!-- Funktioner der ser om login_status er false, og giver præsentation af projekt (Find ud af newline og sammenflet funktioner til én!) -->
+<!-- Funktioner der ser om login_status er false, og giver præsentation af projekt -->
 <p><script>
     if (localStorage.getItem("login_status") !== "true") {
-        document.write("Med Come2Gether har du mulighed for at møde nye mennesker gennem vores forskellige Event's, der er arrangement af vores store netværk frivillige brugere.");
-    }
-</script></p>
-
-<p><script>
-    if (localStorage.getItem("login_status") !== "true") {
-        document.write("Prøv at deltage i alt fra Fodboldturneringer til madlavningskurser, og skab nye venskaber med folk, du ellers aldrig ville have mødt!")
-    }
-</script></p>
-
-<p><script>
-    if (localStorage.getItem("login_status") !== "true") {
-        document.write("Opret en bruger, og deltag i dit første Event allerede i dag!")
+        document.write("Med Come2Gether har du mulighed for at møde nye mennesker gennem vores forskellige Event's, der er arrangement af vores store netværk frivillige brugere."
+        + "<br><br>" + "Prøv at deltage i alt fra Fodboldturneringer til madlavningskurser, og skab nye venskaber med folk, du ellers aldrig ville have mødt!" + "<br><br>"
+        + "Opret en bruger, og deltag i dit første Event allerede i dag!");
     }
 </script></p>
 
@@ -60,10 +50,8 @@
 <!-- Funktion der ser om login_status er true, og byder velkommen til eksisterende bruger -->
 <h3><script>
     if (localStorage.getItem("login_status") === "true") {
-    document.write("Hej " + localStorage.getItem("username") + "!")}
+    document.write("Hej " + localStorage.getItem("username") + "!" + "<br><br>" + "Dagens aktiviteter i nærheden af dig:" + "<br><br>")}
 </script></h3>
-
-<!-- Kommentar om at se ugens begivenhed eller begivenheder i nærheden. -->
 
 <script src="../Functions/logout.js"></script>
 </body>
