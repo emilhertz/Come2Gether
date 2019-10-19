@@ -14,3 +14,8 @@ if (localStorage.getItem("login_status") === "true") {
 if (localStorage.getItem("login_status") !== "true") {
     document.getElementById("logout_button").style.visibility = "hidden";
 }
+
+// Skjul opret-event side når ingen bruger er logget ind
+if (localStorage.getItem("login_status") !== "true") {
+    document.getElementById("opret_event").style.visibility = "hidden";
+}
