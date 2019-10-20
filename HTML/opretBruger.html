@@ -15,8 +15,6 @@
         }
         h1 {color: black;}
         p {color: black;}
-
-
     </style>
 </head>
 
@@ -33,29 +31,41 @@
 </style>
 <h1 align="center">Come2Gether</h1>
 
-
 <body>
-
-<!-- Form til indtastning af login -->
+<!-- Form til oprettelse af bruger -->
 <h3 align="center">
-    <form>
-        Vælg Brugernavn:
+    <form name="opretBruger" onsubmit="createUser()" method="get">
+        <!-- Input felter -->
+        Brugernavn: <br/> <input type="text" id="username" value="" placeholder="Eksempelvis: Anton"> <br/><br/>
+        Password <br/> <input type="password" id="password" value="" placeholder="Del aldrig!"> <br/><br/>
+        Alder: <br/> <select type="text" id="age">
+        <option selected disabled>Alder</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+    </select> <br/>
+        Lokalitet: <br/> <select type="text" id="lokation">
+        <option selected disabled>Byer</option>
+        <option value="København">København</option>
+        <option value="Odense">Odense</option>
+        <option value="Aarhus">Aarhus</option>
+        <option value="Pyongyang">Pyongyang</option>
+    </select>
         <br/>
-        <input type="text" id="opretBrugernavn" value="" placeholder="Brugernavn">
-        <br/>
-
-        Vælg Password:
-        <br/>
-        <input type="password" id="opretPassword" value="" placeholder="Password">
-        <br/>
-
-        <br/>
-        <!-- Submit knap til aktivering af login funktion -->
-        <button type="submit" id=opretBruger formmethod="post" style="cursor: pointer;">Opret bruger</button>
-        <br/>
+        <button type="submit" style="cursor: pointer;">Opret bruger</button>
     </form>
 </h3>
 
-
+<script src="../Functions/createUser.js"></script>
+<script src="../Classes/Users.js"></script>
 </body>
 </html>
