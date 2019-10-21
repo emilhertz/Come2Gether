@@ -1,7 +1,8 @@
 //Opret bruger funktion, som så skal gemmes i localStorage sammen med eksisterende brugere
 function createUser() {
     //Gemmer informationer fra ny bruger i objekt newUser
-    newUser = new Users("document.getElementById('username')","doc");
+    var newUsername = document.getElementById("username");
+    newUser = new Users("newUsername","doc");
 
     //Henter storedListOfUsers i localStorage og "parser" til array, hvor newUsers "pushes"
     var listOfUsers = JSON.parse(localStorage.getItem("storedListOfUsers"));
