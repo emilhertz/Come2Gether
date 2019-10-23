@@ -21,6 +21,47 @@ createUserButton.onclick = function (e) {
     alert(newUsername + " er nu oprette som bruger!");
     //Åbner home.html når bruger er oprettet
     window.open("../HTML/home.html", "_self");
+
+
+// Valideringsform
+var form_valid = true;
+var validation_message = "" ;
+
+if (createUserButton) {
+    form_valid=false;
+    validation_message += "Ups, du mangler at udfylde ... \n";
+
+}
+
+//validation: name
+if (newUsername !== "") {
+    form_valid = false;
+    validation_message += "Der skal indtastes et gydligt brugernavn \n";
+}
+
+
+// Tjekker at alder er mellem 13 og 99
+if (newAge < 13) {
+    form_valid = true;
+    validation_message += "Du skal være over 13 år for at oprette en bruger \n"; }
+
+// Tjekker at brugeren har valgt en af de givne byer
+    var newLocation = false;
+    if (newLocation != "") {
+        newLocation = true;
+    } else {
+        validation_message += "Lokalitet skal vælges \n";
+        form_valid = false;
+    }
+
+if (form_valid) {
+    alert("Hej " + newUsername
+    + "\nNewAge: " + newAge
+    + "\nNewLocation: " + newLocation
+    );
+} else {alert(validation_message);}
+
+return (form_valid);
 };
 
 
