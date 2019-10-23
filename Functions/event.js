@@ -9,7 +9,7 @@ if (localStorage.getItem("storedListOfEvents") == null) {
     listOfEvents.push(new Events("Koncert med Khalid", "Royal Arena", "Concert", "11:00, 27/11-2019", "Vi tager ind og hører Khalid sammen. s.u. d 25/10-2019"));
 
     var listOfEventsString = JSON.stringify(listOfEvents);
-    localStorage.setItem("storedListOfUsers", listOfEventsString);
+    localStorage.setItem("storedListOfEvents", listOfEventsString);
 
 
 } else {
