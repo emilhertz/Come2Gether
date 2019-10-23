@@ -4,6 +4,7 @@ if (localStorage.getItem("storedListOfUsers") == null) {
     listOfUsers.push(new Users("Thorn","password","32","København","Fodbold for nybegyndere","Vinsmagning"));
     listOfUsers.push(new Users("Peter","Kanin","224","Eventyrskoven","Kaninfodring","Kaninræs"));
 
+    //listOfUsers stringifies, så de kan tilknyttes localStorage
     var listOfUsersString = JSON.stringify(listOfUsers);
     localStorage.setItem("storedListOfUsers", listOfUsersString);
 } else {

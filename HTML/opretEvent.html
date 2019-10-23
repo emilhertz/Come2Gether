@@ -69,7 +69,10 @@
     <br>
     <br>
     <br>
+    <input type="datetime-local">
 
+    <br>
+    <br>
     Event beskrivelse:
     <br>
     <textarea type="text" rows="5" cols="40" id="event_beskrivelse" value="">
@@ -78,9 +81,12 @@
     <br>
     <br>
 
-    <button type="submit" style="cursor: pointer;">Submit</button>
+    <button type="submit" id="createEvent" formmethod="post" style="cursor: pointer;">Submit</button>
 </form>
 
-<script src="../Functions/logout.js"></script>
+<script src="../Functions/Users/logout.js"></script>
+<script src="../Functions/Events/dummyEvent.js"></script>
+<script src="../Functions/Events/createEvent.js"></script>
+<script src="../Classes/Event.js"></script>
 </body>
 </html>
