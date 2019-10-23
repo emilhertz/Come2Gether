@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="../CSS/topbar.css">
-    <link rel="stylesheet" href="../CSS/login.css">
+    <link rel="stylesheet" href="../CSS/Button.css">
     <link href="https://fonts.googleapis.com/css?family=Advent Pro"
           rel="stylesheet">
     <style>
@@ -30,13 +30,15 @@
     }
 </style>
 <h1 align="center">Come2Gether</h1>
-<div id="topnav">
 
+<div id="topnav">
+    <a href="home.html">Tilbage<a/>
 </div>
+
 <body>
 <!-- Form til oprettelse af bruger -->
 <h3 align="center">
-    <form name="opretBruger" onsubmit="createUser()" method="get">
+    <form>
         <!-- Input felter -->
         Brugernavn: <br/> <input type="text" id="username" value="" placeholder="Eksempelvis: Anton"> <br/><br/>
         Password <br/> <input type="password" id="password" value="" placeholder="Del aldrig!"> <br/><br/>
@@ -50,7 +52,7 @@
         <option value="Pyongyang">Pyongyang</option>
     </select>
         <br/>
-        <button type="submit" style="cursor: pointer;">Opret bruger</button>
+        <button type="submit" id="createUser" formmethod="post" style="cursor: pointer;">Opret bruger</button>
     </form>
 </h3>
 

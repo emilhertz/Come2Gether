@@ -1,5 +1,5 @@
 
-/* Add a black background color to the top navigation */
+/* tilføjer en bagrundsfarve til vores navigationsbar */
 #topnav {
     list-style-type: none;
     background-color: #868988;
@@ -8,7 +8,7 @@
     overflow: hidden;
 }
 
-/* Style the links inside the navigation bar */
+/* Ændre vores links inden i vores navigations bar */
 #topnav a {
     float: left;
     color: black;
@@ -18,13 +18,11 @@
     font-size: 17px;
 }
 
-/* Change the color of links on hover */
+/* Ændre farven når musen "hover" på en knap */
 #topnav a:hover {
     background-color: #ddd;
     color: black;
 }
-
-/* Add a color to the active/current link */
 
 
 
