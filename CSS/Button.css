@@ -1,5 +1,5 @@
-#button{
-    background-color: ##868988;
+#createUser{
+    background-color: #868988;
     border: none;
     color: black;
     padding: auto;
@@ -7,6 +7,18 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    font-family: Advent Pro;
 }
 
 
+#login{
+    background-color: #868988;
+    border: none;
+    color: black;
+    padding: auto;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: Advent Pro;
+}

@@ -19,7 +19,7 @@ createUserButton.onclick = function (e) {
     localStorage.setItem("storedListOfUsers", listOfUsersString);
     //Giver besked om ny bruger er oprettet
     alert(newUsername + " er nu oprette som bruger!");
-    //Åbner home.html når bruger er oprettet (virker ikke)
+    //Åbner home.html når bruger er oprettet
     window.open("../HTML/home.html", "_self");
 };
 
