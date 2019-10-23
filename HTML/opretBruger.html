@@ -30,7 +30,9 @@
     }
 </style>
 <h1 align="center">Come2Gether</h1>
+<div id="topnav">
 
+</div>
 <body>
 <!-- Form til oprettelse af bruger -->
 <h3 align="center">
@@ -38,7 +40,7 @@
         <!-- Input felter -->
         Brugernavn: <br/> <input type="text" id="username" value="" placeholder="Eksempelvis: Anton"> <br/><br/>
         Password <br/> <input type="password" id="password" value="" placeholder="Del aldrig!"> <br/><br/>
-        Alder: <br/> <input type="text" id="age" placeholder="Hvor gammel er du?"> <br/><br/>
+        Alder: <br/> <input type="number" id="age" placeholder="Hvor gammel er du?"> <br/><br/>
 
         Lokalitet: <br/> <select type="text" id="lokation">
         <option selected disabled>Byer</option>
@@ -54,5 +56,6 @@
 
 <script src="../Functions/createUser.js"></script>
 <script src="../Classes/Users.js"></script>
+<script src="../Functions/login.js"></script>
 </body>
 </html>
