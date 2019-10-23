@@ -1,5 +1,10 @@
-//Opret bruger funktion, som gemmer ny bruger i localStorage sammen med eksisterende brugere (push)
-function createUser() {
+//Denne funktion aktiveres når submit-knap med id="createUser" trykkes på opretBruger.html
+var createUserButton = document.getElementById("createUser");
+createUserButton.onclick = function (e) {
+    //preventDefault forhindrer opdatering af konsol
+    e.preventDefault();
+    //Opret bruger funktion, som gemmer ny bruger i localStorage sammen med eksisterende brugere (push)
+
     //Gemmer informationer fra ny bruger-form i variabler
     var newUsername = document.getElementById("username").value;
     var newPassword = document.getElementById("password").value;
@@ -16,7 +21,7 @@ function createUser() {
     alert(newUsername + " er nu oprette som bruger!");
     //Åbner home.html når bruger er oprettet (virker ikke)
     window.open("../HTML/home.html", "_self");
-}
+};
 
 
 
