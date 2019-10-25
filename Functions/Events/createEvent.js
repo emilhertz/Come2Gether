@@ -1,26 +1,26 @@
-//Denne funktion aktiveres når submit-knap med id="createEvent" trykkes på opretBruger.html
+//Denne funktion aktiveres når submit-knap med id="createEvent" trykkes på createUser.html
 var createUserButton = document.getElementById("createEvent");
 createUserButton.onclick = function (e) {
     //preventDefault forhindrer opdatering af konsol
     e.preventDefault();
-    //Opret event funktion, som gemmer nyt event i localStorage sammen med eksisterende event (push)
 
     //Gemmer informationer fra nyt event-form i variabler
-    // var newUsername = document.getElementById("username").value;
-    // var newPassword = document.getElementById("password").value;
-    // var newAge = document.getElementById("age").value;
-    // var newLocation = document.getElementById("lokation").value;
+    var eventName = document.getElementById("eventName").value;
+    var eventAddress = document.getElementById("?").value;
+   //...
+
+    //Lav for-loop der bestemmer radioknapper (se BIS)
+    var eventCategory = document.getElementById("?").value;
 
 
-    //Events
     //Henter storedListOfEvents i localStorage og "parser" til array, hvor nyt event "pushes"
     var listOfEvents = JSON.parse(localStorage.getItem("storedListOfEvents"));
-    listOfEvents.push(new Events("test"));
-    //listOfUsers stringifies og overskriver storedListOfUsers localStorage
+    listOfEvents.push(new Events(eventName, ));
+    //listOfEvents stringifies og overskriver storedListOfEvents i localStorage
     var listOfEventsString = JSON.stringify(listOfEvents);
-    localStorage.setItem("storedListOfUsers", listOfEventsString);
-    //Giver besked om ny bruger er oprettet
-    alert("? er nu oprette som event!");
-    //Åbner home.html når bruger er oprettet
-    window.open("../HTML/home.html", "_self");
+    localStorage.setItem("storedListOfEvents", listOfEventsString);
+    //Giver besked om nyt event er oprettet
+    alert(eventName + " er nu oprettet som event!");
+    //Åbner Events.html når event er oprettet
+    window.open("../HTML/Events.html", "_self");
 };

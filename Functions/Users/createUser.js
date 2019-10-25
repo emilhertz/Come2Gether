@@ -1,4 +1,4 @@
-//Denne funktion aktiveres når submit-knap med id="createUser" trykkes på opretBruger.html
+//Denne funktion aktiveres når submit-knap med id="createUser" trykkes på createUser.html
 var createUserButton = document.getElementById("createUser");
 createUserButton.onclick = function (e) {
     //preventDefault forhindrer opdatering af konsol
