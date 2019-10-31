@@ -37,24 +37,19 @@
 
 <body>
 <form>
-    Event navn:
+    Eventnavn:
     <br/>
     <input type="text" id="eventName" value="" placeholder="Event navn"/>
     <br>
     <br/>
 
-    Event kategori
+    Eventkategori
     <br/>
-    <input type="radio" name="categories" value="food"/>Food
-    <br/>
-    <input type="radio" name="categories" value="sport"/>Sport
-    <br/>
-    <input type="radio" name="categories" value="going_out"/>Going out
-    <br/>
-    <input type="radio" name="categories" value="culture"/>Culture
-    <br/>
-    <input type="radio" name="categories" value="concert"/>Concert
-    <br/>
+    <input type="radio" class="categories" value="Food"/>Food<br/>
+    <input type="radio" class="categories" value="Sport"/>Sport<br/>
+    <input type="radio" class="categories" value="Going out"/>Going out<br/>
+    <input type="radio" class="categories" value="Culture"/>Culture<br/>
+    <input type="radio" class="categories" value="Concert"/>Concert<br/>
     <br/>
 
     Event Adresse
@@ -69,13 +64,13 @@
     <br>
     <br>
     <br>
-    <input type="datetime-local">
+    <input type="datetime-local" id="time" value="">
 
     <br>
     <br>
     Event beskrivelse:
     <br>
-    <textarea type="text" rows="5" cols="40" id="event_beskrivelse" value="">
+    <textarea type="text" rows="5" cols="40" id="eventDescription" value="">
 
     </textarea>
     <br>
@@ -86,7 +81,8 @@
 
 <script src="../Functions/Users/logout.js"></script>
 <script src="../Classes/Event.js"></script>
-<script src="../Functions/Events/dummyEvent.js"></script>
 <script src="../Functions/Events/createEvent.js"></script>
+<script src="../Functions/Events/dummyEvent.js"></script>
+
 </body>
 </html>

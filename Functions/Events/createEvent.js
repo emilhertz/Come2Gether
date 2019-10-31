@@ -6,16 +6,27 @@ createUserButton.onclick = function (e) {
 
     //Gemmer informationer fra nyt event-form i variabler
     var eventName = document.getElementById("eventName").value;
-    var eventAddress = document.getElementById("?").value;
-   //...
+    // var eventLocation = document.getElementById("eventLocation");
 
-    //Lav for-loop der bestemmer radioknapper (se BIS)
-    var eventCategory = document.getElementById("?").value;
+    //event category
+    var categoryButtons = document.getElementsByClassName("categories");
+    var len = categoryButtons.length;
+    var eventCategory = "";
 
+    //for loop
+    for (i=0; i<len; i++){
+        if (categoryButtons[i].checked) {
+            eventCategory = categoryButtons[i].value;
+            break;
+        }
+    }
+
+    var eventTime = document.getElementById("time").value;
+    var eventDescription = document.getElementById("eventDescription").value;
 
     //Henter storedListOfEvents i localStorage og "parser" til array, hvor nyt event "pushes"
     var listOfEvents = JSON.parse(localStorage.getItem("storedListOfEvents"));
-    listOfEvents.push(new Events(eventName, ));
+    listOfEvents.push(new Events(eventName, "x", eventCategory, eventTime, eventDescription));
     //listOfEvents stringifies og overskriver storedListOfEvents i localStorage
     var listOfEventsString = JSON.stringify(listOfEvents);
     localStorage.setItem("storedListOfEvents", listOfEventsString);
