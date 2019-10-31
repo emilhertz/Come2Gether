@@ -9,12 +9,11 @@ createUserButton.onclick = function (e) {
     // var eventLocation = document.getElementById("eventLocation");
 
     //event category
-    var categoryButtons = document.getElementsByClassName("categories");
-    var len = categoryButtons.length;
+    var categoryButtons = document.getElementsByName("categories");
     var eventCategory = "";
 
-    //for loop
-    for (i=0; i<len; i++){
+    //for loop that choses the radio button that is checked
+    for (i=0; i<categoryButtons.length; i++){
         if (categoryButtons[i].checked) {
             eventCategory = categoryButtons[i].value;
             break;

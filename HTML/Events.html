@@ -68,6 +68,13 @@
                     -->
 
 <!-- Funktion der viser alle oprettede events i storedListOfEvents og filtrere efter lokation og kategori -->
+<h2>Her kan du se dagens begivenheder!</h2>
+<p id="todaysEvents"></p>
+
+<script>
+    document.getElementById("todaysEvents").innerHTML = localStorage.getItem("storedListOfEvents");
+</script>
+
 
 <script src="../Classes/Event.js"></script>
 <script src="../Functions/Events/dummyEvent.js"></script>
