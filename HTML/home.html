@@ -36,18 +36,18 @@
 
 <body>
 <h2>Velkommen til Come2Gether</h2>
-<!-- Funktioner der ser om login_status er false, og giver præsentation af projekt -->
+<!-- Funktioner der eksekverer hvis ingen bruger er logget ind, og giver præsentation af projekt -->
 <p><script>
-    if (localStorage.getItem("login_status") !== "true") {
+    if (localStorage.getItem("signedIn") === null) {
         document.write("Med Come2Gether har du mulighed for at møde nye mennesker gennem vores forskellige Event's, der er arrangement af vores store netværk frivillige brugere."
         + "<br><br>" + "Prøv at deltage i alt fra Fodboldturneringer til madlavningskurser, og skab nye venskaber med folk, du ellers aldrig ville have mødt!" + "<br><br>"
         + "<a href='createUser.html'>Opret en bruger,</a> og deltag i dit første Event allerede i dag!");
     }
 </script></p>
 
-<!-- Funktion der ser om login_status er true, og byder velkommen til eksisterende bruger -->
+<!-- Funktion der byder velkommen til eksisterende bruger -->
 <h3><script>
-    if (localStorage.getItem("login_status") === "true") {
+    if (localStorage.getItem("signedIn") !== null) {
         var user = JSON.parse(localStorage.getItem("signedIn"));
         var userName = user.username;
     document.write("Hej " + userName + "!" + "<br><br>" + "Dagens aktiviteter i nærheden af dig:" + "<br><br>")}

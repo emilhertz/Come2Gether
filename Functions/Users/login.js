@@ -14,8 +14,6 @@ loginButton.onclick = function (e) {
             //  Gemmer bruger som logger ind i localStorage og som string
             var signedIn = JSON.stringify(listOfUsers[i]);
             localStorage.setItem("signedIn", signedIn);
-            // Sæt login_status til true
-            localStorage.setItem("login_status", "true");
             // Åbner home.html
             window.open("../HTML/home.html", "_self");
             return
