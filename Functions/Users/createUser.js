@@ -15,86 +15,45 @@ createUserButton.onclick = function (e) {
     var form_valid = true;
     var validation_message = "" ;
 
-    //validering af om username er tomt, for kort, eller eksisterer i database
+    //Ser om username er tomt, for kort, eller eksisterer i database
     if (newUsername === "") {
         form_valid = false;
         validation_message += "Du skal indtaste et brugernavn! \n";
     }
 
-    if (newUsername <= 3) {
+    //Ser om længde på username passer
+    if (newUsername.length <= 3) {
         form_valid = false;
-        validation_message += "Brugernavnet skal være længere end 3 tegn! \n";
+        validation_message += "Brugernavnet skal mindst være 4 tegn! \n";
     }
 
-    // (EMIL) if (newUsername === localStorage.getItem(storedListOfUsers.username) {
-        form_valid = false;
-        validation_message += "Brugernavnet eksisterer allerede, vælg venligst et andet. \n";
-    }
-
-
-
-
-
-    //Skal kun køre ved positiv validering
-    //Henter storedListOfUsers i localStorage og "parser" til array, hvor ny bruger "pushes"
+    //Henter storedListOfUsers i localStorage og "parser" til array
     var listOfUsers = JSON.parse(localStorage.getItem("storedListOfUsers"));
-    listOfUsers.push(new Users(newUsername, newPassword, newAge, newLocation, "", ""));
-    //listOfUsers stringifies og overskriver storedListOfUsers localStorage
-    var listOfUsersString = JSON.stringify(listOfUsers);
-    localStorage.setItem("storedListOfUsers", listOfUsersString);
-    //Giver besked om ny bruger er oprettet
-    alert(newUsername + " er nu oprette som bruger!");
-    //Åbner home.html når bruger er oprettet
-    window.open("../HTML/home.html", "_self");
 
-
-// Valideringsform
-var form_valid = true;
-var validation_message = "" ;
-
-if (createUserButton) {
-    form_valid=false;
-    validation_message += "Ups, du mangler at udfylde ... \n";
-
-}
-
-//validation: name
-if (newUsername !== "") {
-    form_valid = false;
-    validation_message += "Der skal indtastes et gydligt brugernavn \n";
-}
-
-
-// Tjekker at alder er mellem 13 og 99
-if (newAge < 13) {
-    form_valid = true;
-    validation_message += "Du skal være over 13 år for at oprette en bruger \n"; }
-
-// Tjekker at brugeren har valgt en af de givne byer
-    var newLocation = false;
-    if (newLocation != "") {
-        newLocation = true;
-    } else {
-        validation_message += "Lokalitet skal vælges \n";
-        form_valid = false;
+    //for-loop der ser om brugernavn i forvejen bliver brugt
+    for (i=0; i<listOfUsers.length; i++) {
+        if (newUsername === listOfUsers[i].username) {
+            form_valid = false;
+            validation_message += "Brugernavnet eksisterer allerede :( \nVælg venligst et andet. (se localStorage) \n";
+        }
     }
 
-if (form_valid) {
-    alert("Hej " + newUsername
-    + "\nNewAge: " + newAge
-    + "\nNewLocation: " + newLocation
-    );
-} else {alert(validation_message);}
+    //Ser om lokalitet er valgt
+    if (newLocation === "Byer") {
+        form_valid = false;
+        validation_message += "Vælg venligst en by! \n";
+    }
 
-return (form_valid);
+    //Opretter bruger ved true form_valid
+    if (form_valid) {
+        //Ny bruger "pushes" til listOfUsers array hentet længere oppe
+        listOfUsers.push(new Users(newUsername, newPassword, newAge, newLocation, "", ""));
+        //listOfUsers stringifies og overskriver storedListOfUsers localStorage
+        var listOfUsersString = JSON.stringify(listOfUsers);
+        localStorage.setItem("storedListOfUsers", listOfUsersString);
+        //Giver besked om ny bruger er oprettet
+        alert(newUsername + " er nu oprette som bruger!");
+        //Åbner home.html når bruger er oprettet
+        window.open("../HTML/home.html", "_self");
+    } else { alert(validation_message);}
 };
-
-
-
-//Validering af form (Celina)
-
-//Tjek at der overhoved er indtastet værdier (alert)
-//Tjek at by er valgt i drop-down (og ikke bare byer)
-//Tjek at alder er mellem 13 og 99 (alert)
-//Tjek at password minimum er 6 tegn (alert)
-//Tjek at brugernavn ikke eksisterer i database (alert)
