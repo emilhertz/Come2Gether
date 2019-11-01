@@ -1,8 +1,8 @@
 class Events {
-    constructor(eventName, eventLocation, Categories, eventTime, eventDescription) {
+    constructor(eventName, eventLocation, Category, eventTime, eventDescription) {
         this.eventName = eventName;
         this.eventLocation = eventLocation;
-        this.Categories = Categories;
+        this.Category = Category;
         this.eventTime = eventTime;
         this.eventDescription = eventDescription;
     }

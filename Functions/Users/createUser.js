@@ -11,6 +11,31 @@ createUserButton.onclick = function (e) {
     var newAge = document.getElementById("age").value;
     var newLocation = document.getElementById("lokation").value;
 
+    // Valideringsform
+    var form_valid = true;
+    var validation_message = "" ;
+
+    //validering af om username er tomt, for kort, eller eksisterer i database
+    if (newUsername === "") {
+        form_valid = false;
+        validation_message += "Du skal indtaste et brugernavn! \n";
+    }
+
+    if (newUsername <= 3) {
+        form_valid = false;
+        validation_message += "Brugernavnet skal være længere end 3 tegn! \n";
+    }
+
+    // (EMIL) if (newUsername === localStorage.getItem(storedListOfUsers.username) {
+        form_valid = false;
+        validation_message += "Brugernavnet eksisterer allerede, vælg venligst et andet. \n";
+    }
+
+
+
+
+
+    //Skal kun køre ved positiv validering
     //Henter storedListOfUsers i localStorage og "parser" til array, hvor ny bruger "pushes"
     var listOfUsers = JSON.parse(localStorage.getItem("storedListOfUsers"));
     listOfUsers.push(new Users(newUsername, newPassword, newAge, newLocation, "", ""));
