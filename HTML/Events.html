@@ -6,6 +6,7 @@
     <!--https://www.nemprogrammering.dk/forum/viewtopic.php?t=388 Gør at html dokumentet kan læse æø og å-->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="../CSS/topbar.css">
+    <link rel="stylesheet" href="../CSS/event.css">
     <link href="https://fonts.googleapis.com/css?family=Advent Pro"
           rel="stylesheet">
     <style>
@@ -69,10 +70,22 @@
 
 <!-- Funktion der viser alle oprettede events i storedListOfEvents og filtrere efter lokation og kategori -->
 <h2>Her kan du se dagens begivenheder!</h2>
-<p id="todaysEvents"></p>
+<div class="event">
+    Test.
+</div>
 
 <script>
-    document.getElementById("todaysEvents").innerHTML = localStorage.getItem("storedListOfEvents");
+    var listOfEvents = JSON.parse(localStorage.getItem("storedListOfEvents"));
+    console.log(listOfEvents);
+    var x = "";
+    var i = 0;
+
+        do {
+            x +=listOfEvents[i] + "Hej";
+            i++;
+        } while (i < listOfEvents.length);
+
+    document.getElementsByClassName("event").innerHTML = x;
 </script>
 
 
