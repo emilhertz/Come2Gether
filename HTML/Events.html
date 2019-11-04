@@ -38,44 +38,48 @@
 
 <body>
 
-<h3><script>
 
-
-</script></h3>
-<!--
-<h2>Event Kategorier:<h2/>
-    <br>
-    <br>
-    <h3>Food:<h3/>
-
-    <br>
-    <br/>
-        <h3>Sport:<h3/>
-
-
-            <br>
-            <br/>
-            <h3>Going Out:<h3/>
-
-
-                <br>
-                <br/>
-                <h3>Culture:<h3/>
-
-                    <br>
-                    <br/>
-                    <h3>Concert:<h3/>
-                    -->
-
-<!-- Funktion der viser alle oprettede events i storedListOfEvents og filtrere efter lokation og kategori -->
 <h2>Her kan du se dagens begivenheder!</h2>
 <p id="todaysEvents"></p>
 
 <script>
     document.getElementById("todaysEvents").innerHTML = localStorage.getItem("storedListOfEvents");
+
 </script>
 
+<table style="width:100%">
+    <tr>
+        <th>Event Name</th>
+        <th>Event Location</th>
+        <th>Category</th>
+        <th>Event Time</th>
+        <th>Event Description</th>
+        <th>Event Capacity</th>
+        <th>Event Host</th>
 
+    </tr>
+    <tr>
+        <td>Fælles madlavning</td>
+        <td>Amalienborg</td>
+        <td>Food</td>
+        <td>17:30, d.31/12-2019</td>
+        <td>Vi mødes laver lidt lækkert mad og drikker lidt vin. s.u. d. 24/12-2019</td>
+        <td>4</td>
+        <td>Thorn</td>
+    </tr>
+
+    <tr>
+        <td>d</td>
+        <td>Amalienborg</td>
+        <td>Food</td>
+        <td>17:30, d.31/12-2019</td>
+        <td>Vi mødes laver lidt lækkert mad og drikker lidt vin. s.u. d. 24/12-2019</td>
+        <td>4</td>
+        <td>Thorn</td>
+    </tr>
+
+
+</table>
 <script src="../Classes/Event.js"></script>
 <script src="../Functions/Events/dummyEvent.js"></script>
 <script src="../Functions/Users/logout.js"></script>
