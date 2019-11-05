@@ -41,7 +41,7 @@ createUserButton.onclick = function (e) {
     //Ser om alderen er et tal mellem 13 og 99
     if (newAge < 13 || newAge > 99) {
         form_valid = false;
-        validation_message += "Du skal være over 13 år for at oprette en bruger \n";
+        validation_message += "Du skal være over 13 år (og yngre end 99 år) for at oprette en bruger \n";
     }
 
     //Ser om password er udfyldt og om det er for kort (skal minimum være 6 tegn)
