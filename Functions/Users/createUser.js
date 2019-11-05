@@ -9,7 +9,7 @@ createUserButton.onclick = function (e) {
     var newUsername = document.getElementById("username").value;
     var newPassword = document.getElementById("password").value;
     var newAge = document.getElementById("age").value;
-    var newLocation = document.getElementById("lokation").value;
+    var newLocation = document.getElementById("city").value;
 
     // Valideringsform
     var form_valid = true;
@@ -44,7 +44,7 @@ createUserButton.onclick = function (e) {
         validation_message += "Du skal være over 13 år for at oprette en bruger \n";
     }
 
-    //Ser om passqord er udfyldt og om det er for kort (skal minimum være 6 tegn)
+    //Ser om password er udfyldt og om det er for kort (skal minimum være 6 tegn)
     if (newPassword.length <= 5) {
         form_valid = false;
         validation_message += "Password skal minimum bestå af 6 tegn \n";
