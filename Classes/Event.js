@@ -1,4 +1,5 @@
 class Events {
+    //Klassens variabler
     constructor(eventName, eventLocation, Category, eventTime, eventDescription, eventCapacity, eventHost) {
         this.eventName = eventName;
         this.eventLocation = eventLocation;
