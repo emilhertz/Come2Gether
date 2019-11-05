@@ -13,7 +13,7 @@ createUserButton.onclick = function (e) {
 
     // Valideringsform
     var form_valid = true;
-    var validation_message = "" ;
+    var validation_message = "";
 
     //Ser om username er tomt, for kort, eller eksisterer i database
     if (newUsername === "") {
@@ -38,6 +38,18 @@ createUserButton.onclick = function (e) {
         }
     }
 
+    //Ser om alderen er et tal mellem 13 og 99
+    if (newAge < 13 || newAge > 99) {
+        form_valid = false;
+        validation_message += "Du skal være over 13 år for at oprette en bruger \n";
+    }
+
+    //Ser om passqord er udfyldt og om det er for kort (skal minimum være 6 tegn)
+    if (newPassword.length <= 5) {
+        form_valid = false;
+        validation_message += "Password skal minimum bestå af 6 tegn \n";
+    }
+
     //Ser om lokalitet er valgt
     if (newLocation === "Byer") {
         form_valid = false;
@@ -48,12 +60,15 @@ createUserButton.onclick = function (e) {
     if (form_valid) {
         //Ny bruger "pushes" til listOfUsers array hentet længere oppe
         listOfUsers.push(new Users(newUsername, newPassword, newAge, newLocation, "", ""));
+
         //listOfUsers stringifies og overskriver storedListOfUsers localStorage
         var listOfUsersString = JSON.stringify(listOfUsers);
         localStorage.setItem("storedListOfUsers", listOfUsersString);
+
         //Giver besked om ny bruger er oprettet
         alert(newUsername + " er nu oprette som bruger!");
+
         //Åbner home.html når bruger er oprettet
         window.open("../HTML/home.html", "_self");
     } else { alert(validation_message);}
-};
+}
