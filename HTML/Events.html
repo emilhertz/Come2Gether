@@ -15,6 +15,10 @@
         }
         h1 {color: black;}
         p {color: black;}
+
+        hr {
+            border-style: groove;
+        }
     </style>
 
 </head>
@@ -37,62 +41,53 @@
 </div>
 
 <body>
-<h2>Her kan du se dagens begivenheder!</h2>
+<h2>Her kan du se fremtidige begivenheder!</h2>
 
 <!-- Div's for hvert event-property, så de bliver positioneret rigtigt -->
+<div id="linje">
 <div id="eventName" style="float: left; width: 12%">
     <strong>Eventnavn:</strong>
+    <hr>
 </div>
 
 <div id="eventLocation" style="float: left; width: 10%">
     <strong>Lokation:</strong>
+    <hr>
 </div>
 
 <div id="eventKategori" style="float: left; width: 7%">
     <strong>Kategori:</strong>
+    <hr>
 </div>
 
 <div id="eventTid" style="float: left; width: 10%">
     <strong>Tidspunkt:</strong>
+    <hr>
 </div>
 
-<div id="eventVært" style="float: left; width: 12%">
+<div id="eventVært" style="float: left; width: 5%">
     <strong>Vært:</strong>
+    <hr>
 </div>
 
-<script>
-    var listOfEvents = JSON.parse(localStorage.getItem("storedListOfEvents"));
+<div id="eventBeskrivelse" style="float: left; width: 45%">
+    <strong>Beskrivelse:</strong>
+    <hr>
+</div>
 
-    //for-loop der kører igennem alle events
-    for (i=0; i<listOfEvents.length; i++) {
+<div id="eventKapacitet" style="float: left; width: 5%">
+    <strong>Pladser:</strong>
+    <hr>
+</div>
 
-        //Tilknytter (appendChild) alle eventnavne (som paragraffer) til div'en eventName
-        var eventName = document.createElement("P");
-        eventName.innerHTML = listOfEvents[i].eventName;
-        document.getElementById("eventName").appendChild(eventName);
-
-        //samme fremgangsmåde
-        var eventLocation = document.createElement("P");
-        eventLocation.innerHTML = listOfEvents[i].eventLocation;
-        document.getElementById("eventLocation").appendChild(eventLocation);
-
-        var eventKategori = document.createElement("P");
-        eventKategori.innerHTML = listOfEvents[i].Category;
-        document.getElementById("eventKategori").appendChild(eventKategori);
-
-        //Skal laves drastisk om, ved implementering af tidskoder
-        var eventTid = document.createElement("P");
-        eventTid.innerHTML = listOfEvents[i].eventTime;
-        document.getElementById("eventTid").appendChild(eventTid);
-
-        var eventHost = document.createElement("P");
-        eventHost.innerHTML = listOfEvents[i].eventHost;
-        document.getElementById("eventVært").appendChild(eventHost);
-    }
-</script>
+<div id="tilmeldEvent" style="float: left; width: 6%">
+    <hr>
+</div>
+</div>
 
 <script src="../Classes/Event.js"></script>
 <script src="../Functions/Events/dummyEvent.js"></script>
+<script src="../Functions/Events/displayEvents.js"></script>
 <script src="../Functions/Users/logout.js"></script>
 
 </body>

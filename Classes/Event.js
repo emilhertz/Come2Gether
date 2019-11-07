@@ -12,11 +12,12 @@ class Events {
     }
 
     //Metode der skal sikre at event har kapacitet hvis en bruger ønsker at deltage
-    remainingCapacity(eventCapacity, eventParticipants) {
-        if (eventCapacity.length - eventParticipants.length > 0) {
-            var joinEvent  = true;
+    //Virker ikke
+    remainingCapacity() {
+        var remainingCapacity = this.eventCapacity.length - this.eventParticipants.length;
+        var joinEvent = true;
+        if (remainingCapacity > 0) {
+            return remainingCapacity.length;
         } else {joinEvent = false;}
     }
 }
-
-
