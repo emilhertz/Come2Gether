@@ -52,8 +52,12 @@
     <strong>Kategori:</strong>
 </div>
 
-<div id="eventTid" style="float: left; width: 9%">
+<div id="eventTid" style="float: left; width: 10%">
     <strong>Tidspunkt:</strong>
+</div>
+
+<div id="eventVært" style="float: left; width: 12%">
+    <strong>Vært:</strong>
 </div>
 
 <script>
@@ -80,6 +84,10 @@
         var eventTid = document.createElement("P");
         eventTid.innerHTML = listOfEvents[i].eventTime;
         document.getElementById("eventTid").appendChild(eventTid);
+
+        var eventHost = document.createElement("P");
+        eventHost.innerHTML = listOfEvents[i].eventHost;
+        document.getElementById("eventVært").appendChild(eventHost);
     }
 </script>
 
