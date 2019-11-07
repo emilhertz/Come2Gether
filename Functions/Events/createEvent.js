@@ -6,27 +6,25 @@ createUserButton.onclick = function (e) {
 
     //Gemmer informationer fra nyt event-form i variabler
     var eventName = document.getElementById("eventName").value;
+    var eventCapacity = document.getElementById("capacity").value;
 
     //Henter eventCategory og ser hvilken kategori er valgt med for-loop
     var categoryButtons = document.getElementsByName("categories");
-    var eventCategory = "";
 
     for (i=0; i<categoryButtons.length; i++){
         if (categoryButtons[i].checked) {
-            eventCategory = categoryButtons[i].value;
+            var eventCategory = categoryButtons[i].value;
             break;
         }
     }
 
     //Indtil der findes en løsning med adresser, bruges kun byer
-    // var eventStreet = document.getElementById("gadenavn");
-    // var eventHouseNo = document.getElementById("husnummer");
-    // var eventLocation = eventStreet + " " + eventHouseNo + ", " + eventCity;
-    var eventCity = document.getElementById("city");
+    var eventCity = document.getElementById("lokation").value;
 
-
-
+    //Skal fixes
     var eventTime = document.getElementById("time").value;
+
+    //Virker
     var eventDescription = document.getElementById("eventDescription").value;
 
     //Validering (mangler - se createUser)
@@ -37,12 +35,15 @@ createUserButton.onclick = function (e) {
 
     //Henter storedListOfEvents i localStorage og "parser" til array, hvor nyt event "pushes"
     var listOfEvents = JSON.parse(localStorage.getItem("storedListOfEvents"));
-    listOfEvents.push(new Events(eventName, eventCity, eventCategory, eventTime, eventDescription, "et tal", hostUser.username));
+    listOfEvents.push(new Events(eventName, eventCity, eventCategory, eventTime, eventDescription, eventCapacity, hostUser.username, ""));
+
     //listOfEvents stringifies og overskriver storedListOfEvents i localStorage
     var listOfEventsString = JSON.stringify(listOfEvents);
     localStorage.setItem("storedListOfEvents", listOfEventsString);
+
     //Giver besked om nyt event er oprettet
     alert(eventName + " er nu oprettet som event!");
+
     //Åbner Events.html når event er oprettet
     window.open("../HTML/Events.html", "_self");
 };
