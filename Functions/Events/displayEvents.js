@@ -3,13 +3,18 @@ var listOfEvents = JSON.parse(localStorage.getItem("storedListOfEvents"));
 //for-loop der kører igennem alle events
 for (i=0; i<listOfEvents.length; i++) {
 
-    //Tilknytter (appendChild) alle eventnavne (som paragraffer) til div'en eventName
+    //Tilknytter (appendChild) alle eventnavne (noder som paragraffer) til div'en eventName
     var eventName = document.createElement("p");
     eventName.innerHTML = listOfEvents[i].eventName;
+    //VIRKER!!!
+    eventName.setAttribute('class', 'test');
 
     //Variabel tilknyttet tagget <hr>, som tilknytter en vandret linje under hver node
-    var linje1 = document.createElement("hr");
-    eventName.appendChild(linje1);
+    var linje = document.createElement("hr");
+    //eventName.appendChild(linje1);
+
+    //document.getElementsByClassName("test").appendChild(linje);
+
     document.getElementById("eventName").appendChild(eventName);
 
     //samme fremgangsmåde
@@ -62,7 +67,14 @@ for (i=0; i<listOfEvents.length; i++) {
 
     //Tilmeldningsknap
     //Virker ikke
-    //var tilmeldEvent = document.createElement("button");
-    //tilmeldEvent.innerHTML = "Tilmeld";
-    //document.getElementById("tilmeldEvent").appendChild(tilmeldEvent);
+    var tilmeldEvent = document.createElement("p");
+    var link = document.createElement("a");
+    tilmeldEvent.appendChild(link);
+    tilmeldEvent.addEventListener("click", function () {
+        console.log("VIRKER! :)")
+    });
+    tilmeldEvent.innerHTML = "Tilmeld";
+    var linje8 = document.createElement("hr");
+    tilmeldEvent.appendChild(linje8);
+    document.getElementById("tilmeldEvent").appendChild(tilmeldEvent);
 }
