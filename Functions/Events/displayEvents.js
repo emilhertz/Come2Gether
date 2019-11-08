@@ -7,7 +7,7 @@ for (i=0; i<listOfEvents.length; i++) {
     var eventName = document.createElement("p");
     eventName.innerHTML = listOfEvents[i].eventName;
 
-    //Variable tilknyttet tagget <hr>, som laver en vandret linje under hver node
+    //Variabel tilknyttet tagget <hr>, som tilknytter en vandret linje under hver node
     var linje1 = document.createElement("hr");
     eventName.appendChild(linje1);
     document.getElementById("eventName").appendChild(eventName);
