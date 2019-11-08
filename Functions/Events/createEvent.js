@@ -29,7 +29,6 @@ createUserButton.onclick = function (e) {
 
     //Validering (mangler - se createUser)
 
-
     //Henter bruger som er logget ind, så denne tilknyttes event som hostUser
     var hostUser = JSON.parse(localStorage.getItem("signedIn"));
 
