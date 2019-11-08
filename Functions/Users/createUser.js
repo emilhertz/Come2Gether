@@ -11,20 +11,20 @@ createUserButton.onclick = function (e) {
     var newAge = document.getElementById("age").value;
     var newLocation = document.getElementById("city").value;
 
-    // Valideringsform
-    var form_valid = true;
-    var validation_message = "";
+    // Validerings form
+    var approvedInput = true;
+    var errorMessage = "";
 
     //Ser om username er tomt, for kort, eller eksisterer i database
     if (newUsername === "") {
-        form_valid = false;
-        validation_message += "Du skal indtaste et brugernavn! \n";
+        approvedInput = false;
+        errorMessage += "Du skal indtaste et brugernavn! \n";
     }
 
     //Ser om længde på username passer
     if (newUsername.length <= 3) {
-        form_valid = false;
-        validation_message += "Brugernavnet skal mindst være 4 tegn! \n";
+        approvedInput = false;
+        errorMessage += "Brugernavnet skal mindst være 4 tegn! \n";
     }
 
     //Henter storedListOfUsers i localStorage og "parser" til array
@@ -33,31 +33,31 @@ createUserButton.onclick = function (e) {
     //for-loop der ser om brugernavn i forvejen bliver brugt
     for (i=0; i<listOfUsers.length; i++) {
         if (newUsername === listOfUsers[i].username) {
-            form_valid = false;
-            validation_message += "Brugernavnet eksisterer allerede :( \nVælg venligst et andet. (se localStorage) \n";
+            approvedInput = false;
+            errorMessage += "Brugernavnet eksisterer allerede :( \nVælg venligst et andet. (se localStorage) \n";
         }
     }
 
     //Ser om alderen er et tal mellem 13 og 99
     if (newAge < 13 || newAge > 99) {
-        form_valid = false;
-        validation_message += "Du skal være over 13 år (og yngre end 99 år) for at oprette en bruger \n";
+        approvedInput = false;
+        errorMessage += "Du skal være over 13 år (og yngre end 99 år) for at oprette en bruger \n";
     }
 
     //Ser om password er udfyldt og om det er for kort (skal minimum være 6 tegn)
     if (newPassword.length <= 5) {
-        form_valid = false;
-        validation_message += "Password skal minimum bestå af 6 tegn \n";
+        approvedInput = false;
+        errorMessage += "Password skal minimum bestå af 6 tegn \n";
     }
 
     //Ser om lokalitet er valgt
     if (newLocation === "Byer") {
-        form_valid = false;
-        validation_message += "Vælg venligst en by! \n";
+        approvedInput = false;
+        errorMessage += "Vælg venligst en by! \n";
     }
 
-    //Opretter bruger ved true form_valid
-    if (form_valid) {
+    //Opretter bruger ved true approvedInput
+    if (approvedInput) {
         //Ny bruger "pushes" til listOfUsers array hentet længere oppe
         listOfUsers.push(new Users(newUsername, newPassword, newAge, newLocation, "", ""));
 
@@ -70,5 +70,5 @@ createUserButton.onclick = function (e) {
 
         //Åbner home.html når bruger er oprettet
         window.open("../HTML/home.html", "_self");
-    } else { alert(validation_message);}
+    } else { alert(errorMessage);}
 }
