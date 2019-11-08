@@ -50,12 +50,6 @@ createUserButton.onclick = function (e) {
         errorMessage += "Password skal minimum bestå af 6 tegn \n";
     }
 
-    //Ser om lokalitet er valgt
-    if (newLocation === "Byer") {
-        approvedInput = false;
-        errorMessage += "Vælg venligst en by! \n";
-    }
-
     //Opretter bruger ved true approvedInput
     if (approvedInput) {
         //Ny bruger "pushes" til listOfUsers array hentet længere oppe

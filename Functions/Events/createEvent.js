@@ -10,11 +10,16 @@ createUserButton.onclick = function (e) {
 
     //Henter eventCategory og ser hvilken kategori er valgt med for-loop
     var categoryButtons = document.getElementsByName("categories");
+    var eventCategory = "";
 
+    var i = 0;
+
+    var validRadio = false;
     for (i=0; i<categoryButtons.length; i++){
         if (categoryButtons[i].checked) {
-            var eventCategory = categoryButtons[i].value;
-            break;
+            eventCategory = categoryButtons[i].value;
+
+            validRadio = true;
         }
     }
 
@@ -43,11 +48,11 @@ createUserButton.onclick = function (e) {
         errorMessage += "Antal pladser skal være mellem 3 og 100 \n";
     }
 
-    /*Tjekker at en af kategorierne er valgt
-    if (categoryButtons == "") {
+    //Tjekker at en af kategorierne er valgt
+    if (validRadio == false) {
         approvedInput = false;
-        errorMessage += "Kategori skal være defineret \n";
-    } */
+        errorMessage += "Du skal vælge en katagori \n";
+    }
 
     //Ser om lokalitet er valgt
     if (eventCity === "Byer") {
@@ -55,7 +60,8 @@ createUserButton.onclick = function (e) {
         errorMessage += "Vælg venligst en by! \n";
     }
 
-    //Få styr på dato og tid!!
+    //Tjekker at man ikke kan vælge den 31. i visse månder
+    
 
     //Tjekker at der er skrevet i beskrivelses boksen
     if (eventDescription === "") {
