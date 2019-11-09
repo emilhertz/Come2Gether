@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Min Side</title>
     <link rel="stylesheet" href="../CSS/topbar.css">
+    <link rel="stylesheet" href="../CSS/Button.css">
     <link href="https://fonts.googleapis.com/css?family=Advent Pro"
           rel="stylesheet">
 
@@ -15,6 +16,7 @@
         h1 {color: black;}
         p {color: black;}
     </style>
+    <script src="../Functions/Users/login.js"></script>
 </head>
 
 <style>
@@ -30,6 +32,7 @@
 </style>
 <h1 align="center">Come2Gether</h1>
 
+<!--Navigations bar  -->
 <div id="topnav">
     <a href="home.html">Hjem</a>
     <a href="Events.html">Events</a>
@@ -48,8 +51,26 @@
 <script src="../Functions/Users/logout.js"></script>
 
 <body>
+<h2>Her kan du se de event du har deltaget i tidligere, samt ændre din kode! </h2>
+<form>
+    Tidligere deltaget events:
+    <br>
+    <br>
+    Ændre din kode her:
+    <br>
+    <!-- er ikke færdigt endnu -->
+    <input type="password" id="oldPassword" value="" placeholder="Gamle kodeord"/>
+    <br>
+    <br>
+    <input type="password" id="newPassword" value="" placeholder="Nye kodeord"/>
+    <input type="password" id="repeatNewPassword" value="" placeholder="Gentag kodeord"/>
+    <br>
+    <br>
+    <button type="submit" id="createEvent" formmethod="post" style="cursor: pointer;">Submit</button>
 
-<h1>Her kan du se de event du har deltaget i tidligere, samt ændre din kode! </h1>
+</form>
 
+
+<script src="../Functions/Users/login.js"></script>
 </body>
 </html>
