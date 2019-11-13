@@ -1,10 +1,8 @@
-var listOfEvents = JSON.parse(localStorage.getItem("storedListOfEvents"));
-
 //for-loop der kører igennem alle events
-for (i=0; i<listOfEvents.length; i++) {
+for (let i=0; i<listOfEvents.length; i++) {
 
     //node med html-tag P skabes og får tilknyttet string (eventnavn[i])
-    var eventName = document.createElement("p");
+    let eventName = document.createElement("p");
     eventName.innerHTML = listOfEvents[i].eventName;
     //Klasse tilføjes for at kunne bruge CSS
     eventName.classList.add("eventDisplay");
@@ -64,4 +62,4 @@ for (i=0; i<listOfEvents.length; i++) {
     tilmeldEvent.classList.add("eventDisplay");
     document.getElementById("tilmeldEvent").appendChild(tilmeldEvent);
 
-}
+};

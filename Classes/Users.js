@@ -1,12 +1,12 @@
 // User-klasse
 class Users {
-    constructor(username, password, age, location, pastJoinedEvents, pastHostedEvents) {
+    constructor(username, password, age, location, joinedEvents, hostedEvents) {
         this.username = username;
         this.password = password;
         this.age = age;
         this.location = location;
-        this.pastJoinedEvents = pastJoinedEvents;
-        this.pastHostedEvents = pastHostedEvents;
+        this.joinedEvents = joinedEvents;
+        this.hostedEvents = hostedEvents;
     };
 
     //Klasse-metode der med et if-statement undersøger om localStorage med nøglen "storedListOfUsers"
@@ -104,6 +104,8 @@ class Users {
             window.open("../HTML/home.html", "_self");
         } else { alert(errorMessage);}
     };
+    //Implementer ændre password metode (minSide.html)
+    //Implmenter slet bruger metode (minSide.html)
 }
 
 //Metoden dummyUsers bliver kaldt, så det sikres at der er værdier i localStorage "storedListOfUsers"
