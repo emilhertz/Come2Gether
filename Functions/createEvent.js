@@ -27,7 +27,7 @@ createUserButton.onclick = function (e) {
     var eventCity = document.getElementById("lokation").value;
 
     //Skal fixes
-    var eventTime = document.getElementById("time").value;
+    //var eventTime = document.getElementById("time").value;
 
     //Virker
     var eventDescription = document.getElementById("eventDescription").value;
@@ -76,7 +76,7 @@ createUserButton.onclick = function (e) {
 
     //Henter storedListOfEvents i localStorage og "parser" til array, hvor nyt event "pushes"
     var listOfEvents = JSON.parse(localStorage.getItem("storedListOfEvents"));
-    listOfEvents.push(new Events(eventName, eventCity, eventCategory, eventTime, eventDescription, eventCapacity, hostUser.username, ""));
+    listOfEvents.push(new Events(eventName, eventCity, eventCategory, "Tidspunk", eventDescription, eventCapacity, hostUser.username, ""));
 
     //listOfEvents stringifies og overskriver storedListOfEvents i localStorage
     var listOfEventsString = JSON.stringify(listOfEvents);
