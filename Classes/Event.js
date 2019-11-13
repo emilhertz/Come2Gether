@@ -14,7 +14,7 @@ class Events {
         if (localStorage.getItem("storedListOfEvents") == null) {
             let listOfEvents = [];
             // Hardcodede værdier pushes til array
-            listOfEvents.push(new Events("Fælles madlavning", "København", "Mad", "17:30, d.31/12-2019", "Vi mødes laver lidt lækkert mad og drikker lidt vin. s.u. d. 24/12-2019", "4", "Thorn","3"));
+            listOfEvents.push(new Events("Fælles madlavning", "København", "Mad", "17:30, d.31/12-2019", "Vi mødes laver lidt lækkert mad og drikker lidt vin. s.u. d. 24/12-2019", "4", "Thorn",2));
             listOfEvents.push(new Events("Motionsfodbold", "Odense", "Sport", "17:00, d.20/10-2019", "Vi mødes til lidt hygge fodbold, fodboldstøvler er ikke et krav men anbefales", "22", "Thorn", "1"));
             listOfEvents.push(new Events("Kulturnat", "København", "Kultur", "20:00, d.12/10-2019", "Vi går en tur rundt i byen og ser på hvad byen kan", "100", "Peter", "42"));
             listOfEvents.push(new Events("Pubcrawl", "København", "Bytur", "16:00, d.1/11-2019", "Vi tager en tur op gennem Gothersgade og besøger lidt forskellige barer på J-dag", "25", "Thorn", "24"));
@@ -108,17 +108,75 @@ class Events {
             return remainingCapacity;
         } else {joinEvent = false; return "0"}
     };
-    //eksperimentielt eventDisplay
-    //VIRKER IKKE :(
+    //Præsenterer events i events.html
     static displayEvents() {
-        listOfEvents.forEach(display);
+        //for-loop der kører igennem alle events
+        for (let i=0; i<listOfEvents.length; i++) {
 
-        function display(item, index) {
-            document.getElementById("eventName").appendChild(listOfEvents.eventName)
+            //node med html-tag P skabes og får tilknyttet string (eventnavn[i])
+            let eventName = document.createElement("p");
+            eventName.innerHTML = listOfEvents[i].eventName;
+            //Klasse tilføjes for at kunne bruge CSS
+            eventName.classList.add("eventDisplay");
+            //Tilknytter (appendChild) alle eventnavne (noder som <p>) til div'en eventName
+            document.getElementById("eventName").appendChild(eventName);
+
+            //samme fremgangsmåde
+            var eventLocation = document.createElement("p");
+            eventLocation.innerHTML = listOfEvents[i].eventLocation;
+            eventLocation.classList.add("eventDisplay");
+            document.getElementById("eventLocation").appendChild(eventLocation);
+
+            //samme fremgangsmåde
+            var eventKategori = document.createElement("p");
+            eventKategori.innerHTML = listOfEvents[i].Category;
+            eventKategori.classList.add("eventDisplay");
+            document.getElementById("eventKategori").appendChild(eventKategori);
+
+            //Skal laves drastisk om, ved implementering af tidskoder
+            //samme fremgangsmåde
+            var eventTid = document.createElement("p");
+            eventTid.innerHTML = listOfEvents[i].eventTime;
+            eventTid.classList.add("eventDisplay");
+            document.getElementById("eventTid").appendChild(eventTid);
+
+            //samme fremgangsmåde
+            var eventHost = document.createElement("p");
+            eventHost.innerHTML = listOfEvents[i].eventHost;
+            eventHost.classList.add("eventDisplay");
+            document.getElementById("eventVært").appendChild(eventHost);
+
+            //samme fremgangsmåde
+            var eventBeskrivelse = document.createElement("p");
+            eventBeskrivelse.innerHTML = listOfEvents[i].eventDescription;
+            eventBeskrivelse.classList.add("eventDisplay");
+            document.getElementById("eventBeskrivelse").appendChild(eventBeskrivelse);
+
+            //Virker ikke
+            //var eventKapacitet = document.createElement("P");
+            //eventKapacitet.innerHTML = listOfEvents[i].remainingCapacity;
+            //document.getElementById("eventBeskrivelse").appendChild(eventBeskrivelse);
+
+            //samme fremgangsmåde
+            var eventKapacitet = document.createElement("p");
+            eventKapacitet.innerHTML = listOfEvents[i].eventCapacity;
+            eventKapacitet.classList.add("eventDisplay");
+            document.getElementById("eventKapacitet").appendChild(eventKapacitet);
+
+            //Tilmeldningsknap (beskriv yderligere)
+            var tilmeldEvent = document.createElement("p");
+
+            tilmeldEvent.addEventListener("click", Events.join(i));
+            tilmeldEvent.innerHTML = "Tilmeld";
+            tilmeldEvent.classList.add("eventDisplay");
+            document.getElementById("tilmeldEvent").appendChild(tilmeldEvent);
         }
     };
-
-    //Lav joinEvent
+    //joinEvent (virker ikke!)
+    static join(i) {
+        listOfEvents[i].eventParticipants += 1;
+        console.log(listOfEvents[i]);
+    };
     //Lav leaveEvent
     //Lav editEvent
     //Lav deleteEvent
