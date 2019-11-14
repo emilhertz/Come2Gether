@@ -9,7 +9,7 @@ if (signedIn == null) {
     document.getElementById("logout_button").style.visibility = "hidden";
 }
 
-// Skjul opret-event side når ingen bruger er logget ind
+// Skjuler opret-event side når ingen bruger er logget ind
 if (signedIn == null) {
     document.getElementById("opret_event").style.visibility = "hidden";
 }

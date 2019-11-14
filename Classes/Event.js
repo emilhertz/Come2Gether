@@ -14,11 +14,11 @@ class Events {
         if (localStorage.getItem("storedListOfEvents") == null) {
             let listOfEvents = [];
             // Hardcodede værdier pushes til array
-            listOfEvents.push(new Events("Fælles madlavning", "København", "Mad", "17:30, d.31/12-2019", "Vi mødes laver lidt lækkert mad og drikker lidt vin. s.u. d. 24/12-2019", "4", "Thorn",2));
-            listOfEvents.push(new Events("Motionsfodbold", "Odense", "Sport", "17:00, d.20/10-2019", "Vi mødes til lidt hygge fodbold, fodboldstøvler er ikke et krav men anbefales", "22", "Thorn", "1"));
-            listOfEvents.push(new Events("Kulturnat", "København", "Kultur", "20:00, d.12/10-2019", "Vi går en tur rundt i byen og ser på hvad byen kan", "100", "Peter", "42"));
-            listOfEvents.push(new Events("Pubcrawl", "København", "Bytur", "16:00, d.1/11-2019", "Vi tager en tur op gennem Gothersgade og besøger lidt forskellige barer på J-dag", "25", "Thorn", "24"));
-            listOfEvents.push(new Events("Koncert med Khalid", "Aarhus", "Koncert", "11:00, 27/11-2019", "Vi tager ind og hører Khalid sammen. s.u. d 25/10-2019", "300", "Peter", "300"));
+            listOfEvents.push(new Events("Fælles madlavning", "København", "Mad", "17:30, d.31/12-2019", "Vi mødes laver lidt lækkert mad og drikker lidt vin. s.u. d. 24/12-2019", "4", "Thorn",[]));
+            listOfEvents.push(new Events("Motionsfodbold", "Odense", "Sport", "17:00, d.20/10-2019", "Vi mødes til lidt hygge fodbold, fodboldstøvler er ikke et krav men anbefales", "22", "Thorn", []));
+            listOfEvents.push(new Events("Kulturnat", "København", "Kultur", "20:00, d.12/10-2019", "Vi går en tur rundt i byen og ser på hvad byen kan", "100", "Peter", []));
+            listOfEvents.push(new Events("Pubcrawl", "København", "Bytur", "16:00, d.1/11-2019", "Vi tager en tur op gennem Gothersgade og besøger lidt forskellige barer på J-dag", "25", "Thorn", []));
+            listOfEvents.push(new Events("Koncert med Khalid", "Aarhus", "Koncert", "11:00, 27/11-2019", "Vi tager ind og hører Khalid sammen. s.u. d 25/10-2019", "300", "Peter", []));
 
             //listOfEvents stringifies, så de kan tilknyttes localStorage
             let listOfEventsString = JSON.stringify(listOfEvents);
@@ -87,7 +87,7 @@ class Events {
             let hostUser = signedIn.username;
 
             //Push'er nyt event til listOfEvents
-            listOfEvents.push(new Events(eventName, eventCity, eventCategory, "Tidspunkt", eventDescription, eventCapacity, hostUser, "0"));
+            listOfEvents.push(new Events(eventName, eventCity, eventCategory, "Tidspunkt", eventDescription, eventCapacity, hostUser, "0", []));
 
             //listOfEvents med nyt event stringifies og overskriver storedListOfEvents i localStorage
             let listOfEventsString = JSON.stringify(listOfEvents);
@@ -99,14 +99,6 @@ class Events {
             //Åbner Events.html når event er oprettet
             window.open("../HTML/Events.html", "_self");
         } else { alert(errorMessage);}
-    };
-    //Metode der skal undersøge om et event har kapacitet hvis en bruger ønsker at deltage
-    static capacity(event) {
-        let remainingCapacity = event.eventCapacity - event.eventParticipants;
-        let joinEvent = true;
-        if (remainingCapacity > 0) {
-            return remainingCapacity;
-        } else {joinEvent = false; return "0"}
     };
     //Præsenterer events i events.html
     static displayEvents() {
@@ -152,14 +144,14 @@ class Events {
             eventBeskrivelse.classList.add("eventDisplay");
             document.getElementById("eventBeskrivelse").appendChild(eventBeskrivelse);
 
-            //Virker ikke
-            //var eventKapacitet = document.createElement("P");
-            //eventKapacitet.innerHTML = listOfEvents[i].remainingCapacity;
-            //document.getElementById("eventBeskrivelse").appendChild(eventBeskrivelse);
-
             //samme fremgangsmåde
             let eventKapacitet = document.createElement("p");
-            eventKapacitet.innerHTML = listOfEvents[i].eventCapacity;
+
+            //Metode der skal beregne om et event har kapacitet
+            //Beskriv yderligere!
+            let events = listOfEvents[i];
+            let remainingCapacity = events.eventCapacity - events.eventParticipants.length;
+            eventKapacitet.innerHTML = remainingCapacity;
             eventKapacitet.classList.add("eventDisplay");
             document.getElementById("eventKapacitet").appendChild(eventKapacitet);
 
@@ -168,30 +160,36 @@ class Events {
             tilmeldEvent.innerHTML = "Tilmeld";
             tilmeldEvent.classList.add("eventDisplay");
             //Jeg kunne ikke få værdien af index i loop ud af loop'et uden at funktionen kørte sammen med loop'et, hvorfor funktionen er skrevet herinde
+            //addeventlistener der tjekker om der bliver klikket på noden. Hvis der klikkes køres funktionen nedenfor.
             tilmeldEvent.addEventListener('click', function () {
-                //let joinedEvent = listOfEvents[i].eventName;
-
+                //if-statement der ser hvis ingen bruger er logget ind
+                if (signedIn == null) {
+                    alert("Du skal være logget ind for at deltage!");
+                } else if (remainingCapacity === 0) {
+                    alert("Der er desværre ikke flere pladser :(");
+                } else {
+                //variabel der tager det event der bliver klikket på
                 let currentEvent = listOfEvents[i];
-                let pUser = signedIn.username;
-                let participants = [{participants: pUser}];
-                currentEvent.push(participants);
-                console.log(listOfEvents[i]);
+                //variabel der tager de nuværende deltagende brugere, hvor den bruger der er logget ind, bliver push'et til
+                let currentParticipants = currentEvent.eventParticipants;
+                currentParticipants.push(signedIn.username);
+                //det nye event med deltagere overskriver det gamle, og gemmes i localStorage
+                currentEvent.eventParticipants = currentParticipants;
+                let listOfEventsString = JSON.stringify(listOfEvents);
+                localStorage.setItem("storedListOfEvents", listOfEventsString);
+                alert("Du deltager nu i: " + currentEvent.eventName);
+                window.open("../HTML/Events.html", "_self");
+                }
             });
             document.getElementById("tilmeldEvent").appendChild(tilmeldEvent);
         }
-    };
-    //joinEvent (virker ikke!)
-    static join() {
-        //listOfEvents[i].eventParticipants += 1;
-        //console.log(listOfEvents[i]);
-        //let j = document.getElementById("tilmeldEvent").childElementCount;
-        //document.getElementById("knap").children[i].addEventListener("click", Events.join(i));
-        console.log("virker")
+
     };
     //Lav leaveEvent
     //Lav editEvent
     //Lav deleteEvent
 }
+
 
 //Metoden dummyEvents bliver kaldt, så det sikres at der er værdier i localStorage "storedListOfEvents"
 Events.dummyEvent();
