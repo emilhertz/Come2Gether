@@ -122,32 +122,32 @@ class Events {
             document.getElementById("eventName").appendChild(eventName);
 
             //samme fremgangsmåde
-            var eventLocation = document.createElement("p");
+            let eventLocation = document.createElement("p");
             eventLocation.innerHTML = listOfEvents[i].eventLocation;
             eventLocation.classList.add("eventDisplay");
             document.getElementById("eventLocation").appendChild(eventLocation);
 
             //samme fremgangsmåde
-            var eventKategori = document.createElement("p");
+            let eventKategori = document.createElement("p");
             eventKategori.innerHTML = listOfEvents[i].Category;
             eventKategori.classList.add("eventDisplay");
             document.getElementById("eventKategori").appendChild(eventKategori);
 
             //Skal laves drastisk om, ved implementering af tidskoder
             //samme fremgangsmåde
-            var eventTid = document.createElement("p");
+            let eventTid = document.createElement("p");
             eventTid.innerHTML = listOfEvents[i].eventTime;
             eventTid.classList.add("eventDisplay");
             document.getElementById("eventTid").appendChild(eventTid);
 
             //samme fremgangsmåde
-            var eventHost = document.createElement("p");
+            let eventHost = document.createElement("p");
             eventHost.innerHTML = listOfEvents[i].eventHost;
             eventHost.classList.add("eventDisplay");
             document.getElementById("eventVært").appendChild(eventHost);
 
             //samme fremgangsmåde
-            var eventBeskrivelse = document.createElement("p");
+            let eventBeskrivelse = document.createElement("p");
             eventBeskrivelse.innerHTML = listOfEvents[i].eventDescription;
             eventBeskrivelse.classList.add("eventDisplay");
             document.getElementById("eventBeskrivelse").appendChild(eventBeskrivelse);
@@ -158,24 +158,35 @@ class Events {
             //document.getElementById("eventBeskrivelse").appendChild(eventBeskrivelse);
 
             //samme fremgangsmåde
-            var eventKapacitet = document.createElement("p");
+            let eventKapacitet = document.createElement("p");
             eventKapacitet.innerHTML = listOfEvents[i].eventCapacity;
             eventKapacitet.classList.add("eventDisplay");
             document.getElementById("eventKapacitet").appendChild(eventKapacitet);
 
             //Tilmeldningsknap (beskriv yderligere)
-            var tilmeldEvent = document.createElement("p");
-
-            tilmeldEvent.addEventListener("click", Events.join(i));
+            let tilmeldEvent = document.createElement("p");
             tilmeldEvent.innerHTML = "Tilmeld";
             tilmeldEvent.classList.add("eventDisplay");
+            //Jeg kunne ikke få værdien af index i loop ud af loop'et uden at funktionen kørte sammen med loop'et, hvorfor funktionen er skrevet herinde
+            tilmeldEvent.addEventListener('click', function () {
+                //let joinedEvent = listOfEvents[i].eventName;
+
+                let currentEvent = listOfEvents[i];
+                let pUser = signedIn.username;
+                let participants = [{participants: pUser}];
+                currentEvent.push(participants);
+                console.log(listOfEvents[i]);
+            });
             document.getElementById("tilmeldEvent").appendChild(tilmeldEvent);
         }
     };
     //joinEvent (virker ikke!)
-    static join(i) {
-        listOfEvents[i].eventParticipants += 1;
-        console.log(listOfEvents[i]);
+    static join() {
+        //listOfEvents[i].eventParticipants += 1;
+        //console.log(listOfEvents[i]);
+        //let j = document.getElementById("tilmeldEvent").childElementCount;
+        //document.getElementById("knap").children[i].addEventListener("click", Events.join(i));
+        console.log("virker")
     };
     //Lav leaveEvent
     //Lav editEvent

@@ -1,8 +1,20 @@
-.event {
+/*.event {
     height: 40px;
     width: 500px;
     background-color: #555;
-    /*text-align: center;*/
-    margin-left: 50%;
-
+    text-align: center;
+    margin-left: 50%
+    }
+*/
+.eventDisplay {
+    background-color: #868988;
+    height: 25px;
 }
+
+/* Dette er CSS til tilmeldningsknapper
+.eventButton {
+    margin-top: 18px;
+    background-color: #868988;
+    height: 25px;
+}
+*/

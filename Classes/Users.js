@@ -15,7 +15,7 @@ class Users {
         if (localStorage.getItem("storedListOfUsers") == null) {
             let listOfUsers = [];
             listOfUsers.push(new Users("Thorn","password","32","København","Fodbold for nybegyndere","Vinsmagning"));
-            listOfUsers.push(new Users("Peter","Kanin","224","Eventyrskoven","Kaninfodring","Kaninræs"));
+            listOfUsers.push(new Users("Peter","Kanin","224","Eventyrskoven",["Kaninfodring"],"Kaninræs"));
 
             //listOfUsers stringifies, så de kan tilknyttes localStorage
             let listOfUsersString = JSON.stringify(listOfUsers);
