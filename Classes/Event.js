@@ -156,7 +156,7 @@ class Events {
             eventKapacitet.classList.add("eventDisplay");
             document.getElementById("eventKapacitet").appendChild(eventKapacitet);
 
-            //Tilmeldningsknap
+            //Tilmeldningsknap (join-metode)
             let tilmeldEvent = document.createElement("p");
             tilmeldEvent.innerHTML = "Tilmeld";
             tilmeldEvent.classList.add("eventDisplay");
@@ -164,9 +164,9 @@ class Events {
             //addeventlistener der tjekker om der bliver klikket på noden. Hvis der klikkes køres funktionen nedenfor.
             tilmeldEvent.addEventListener('click', function () {
                 //variabel der tager det event der bliver klikket på
-                var currentEvent = listOfEvents[i];
+                let currentEvent = listOfEvents[i];
                 //variabel der tager de nuværende deltagende brugere
-                var currentParticipants = currentEvent.eventParticipants;
+                let currentParticipants = currentEvent.eventParticipants;
 
                 //for-loop der ser om bruger allerede deltager i event
                 for (let j=0; j<currentParticipants.length; j++) {
@@ -183,24 +183,31 @@ class Events {
                 } //else if-statement der ser om der er flere pladser
                 else if (remainingCapacity === 0) {
                     alert("Der er desværre ikke flere pladser :(");
-                } //hvis alle statements foroven er false, deltager brugeren i det valgte event
+                } //hvis alle statements foroven er false, deltager brugeren i det valgte event (koden forneden kaldes)
                 else {
-
-                //let currentParticipants = currentEvent.eventParticipants; (behøves?)
-                currentParticipants.push(signedIn.username);
-                //det nye event med deltagere overskriver det gamle, og gemmes i localStorage
-                currentEvent.eventParticipants = currentParticipants;
-                let listOfEventsString = JSON.stringify(listOfEvents);
-                localStorage.setItem("storedListOfEvents", listOfEventsString);
-                alert("Du deltager nu i: " + currentEvent.eventName);
-                window.open("../HTML/Events.html", "_self");
+                    //brugeren der er logget ind, pushes til array'et currentParticipants, som er defineret foroven
+                    currentParticipants.push(signedIn.username);
+                    //det nye array med deltagere overskriver det gamle, og gemmes i localStorage
+                    currentEvent.eventParticipants = currentParticipants;
+                    let listOfEventsString = JSON.stringify(listOfEvents);
+                    localStorage.setItem("storedListOfEvents", listOfEventsString);
+                    alert("Du deltager nu i: " + currentEvent.eventName);
+                    window.open("../HTML/Events.html", "_self");
                 }
             });
             document.getElementById("tilmeldEvent").appendChild(tilmeldEvent);
         }
 
     };
-    //Lav leaveEvent
+    //Metode der viser events bruger deltager i
+    static showJoinedEvents() {
+        let participants = listOfEvents[0].eventParticipants;
+        console.log(participants)
+    };
+    //Metode der lader bruger "forlade" event
+    static leave() {
+
+    };
     //Lav editEvent
     //Lav deleteEvent
 }
