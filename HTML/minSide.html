@@ -18,17 +18,8 @@
     </style>
 </head>
 
-<style>
-    input [type=text], select {
-        width: 50%;
-        padding: 12xp 20xp;
-        margin: 8px0;
-        display: inline-block;
-        border: 1px solid #cccccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-</style>
+<body>
+
 <h1 align="center">Come2Gether</h1>
 
 <!--Navigations bar  -->
@@ -37,18 +28,19 @@
     <a href="Events.html">Events</a>
     <a class="active" href="about_us.html">Om os</a>
     <div id="opret_event">
-        <a href="createEvent.html">Opret event</a>
+        <a href="createEvent.html">Opret event</a></div>
+    <div id="min_side">
         <a href="minSide.html">Min side</a></div>
 
-<!-- Vil ikke virke -->
+
     <div id="logout_button">
         <li style="float:right"><a onclick="Users.logout()">Log ud</a></li></div>
     <div id="login_button">
         <li style="float:right"><a href="Login.html">Login</a></li></div>
 </div>
 
-<body>
 <h2>Her kan du se de event du har deltaget i tidligere, samt ændre din kode! </h2>
+
 <form>
     Tidligere deltaget events:
     <br>
@@ -63,13 +55,15 @@
     <input type="password" id="repeatNewPassword" value="" placeholder="Gentag kodeord"/>
     <br>
     <br>
-    <button type="submit" id="updatePassword" formmethod="post" style="cursor: pointer;">Submit</button>
+    <!-- virker ikke -->
+    <button type="submit" onclick="changePasswordButton" id="myPage">Submit</button>
 
 </form>
 
 
-
+<script src="../Classes/Users.js"></script>
 <script src="../Functions/hideElements.js"></script>
 <script src="../Functions/changePassword.js"></script>
+<script src="../CSS/Button.css"></script>
 </body>
 </html>

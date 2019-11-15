@@ -9,24 +9,28 @@ changePasswordButton.onclick = function (p) {
 
 
 
-    // Validerings form
+    // Validerings form - virker ikke
     var approvedInput = true;
     var errorMessage = "";
 
-    //Ser om gammelt password er korrekt
-    if (oldPassword !== ) {
+    //Ser om gammelt password er korrekt - virker ikke
+    if (oldPassword != listOfUsers) {
         approvedInput = false;
-        errorMessage += "Indtastede password stemmer ikke overens med password gemt i databasen\n";
+        errorMessage += "Indtastede password stemmer ikke overens med password gemt i databasen \n";
 
     }
 
-    if (newPassword !== repeatNewPassword) {
+    if (newPassword.length <= 5) {
+      approvedInput = false;
+      errorMessage += "Dit nye passwprd skal bestå a mindst 6 tegn \n";
+   }
+    if (newPassword != repeatNewPassword) {
         approvedInput = false;
-        errorMessage += "Dit nye password stemmer ikke overens med det du har skrevet i gentag nyt password\n";
+        errorMessage += "Dit nye password stemmer ikke overens med det du har skrevet i gentag nyt password \n";
     }
 
     if (approvedInput) {
-        listOfUsers.push(newPassword);
+        listOfUsers.push(User(newPassword));
 
         var listOfIUsersString = JSON.stringify(listOfUsers);
         localStorage.setItem("storedListOfUsers", listOfIUsersString);
