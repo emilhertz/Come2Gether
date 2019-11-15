@@ -201,8 +201,26 @@ class Events {
     };
     //Metode der viser events bruger deltager i
     static showJoinedEvents() {
+        let participatingEvents = [];
+        let signedInUsername = signedIn.username;
         let participants = listOfEvents[0].eventParticipants;
-        console.log(participants)
+        for (let i=0; i<participants; i++) {
+            if (participants[i] === signedInUsername) {
+                participatingEvents.push(listOfEvents[0].eventName);
+                console.log(participatingEvents);
+            }
+        }
+
+        //let participatingEvent = [];
+        //let signedInUsername = signedIn.username;
+        //for (let i=0; i<listOfEvents; i++){
+        //    let participants = listOfEvents[i].eventParticipants;
+        //    for (let j=0; j<participants; j++){
+        //        if (participants[j] === signedInUsername) {
+        //            participatingEvent.push(listOfEvents[i].eventName);
+        //            console.log(participatingEvent);
+        //        }
+        //    }
     };
     //Metode der lader bruger "forlade" event
     static leave() {
