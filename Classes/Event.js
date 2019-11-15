@@ -87,7 +87,7 @@ class Events {
             let hostUser = signedIn.username;
 
             //Push'er nyt event til listOfEvents
-            listOfEvents.push(new Events(eventName, eventCity, eventCategory, "Tidspunkt", eventDescription, eventCapacity, hostUser, "0", []));
+            listOfEvents.push(new Events(eventName, eventCity, eventCategory, "Tidspunkt", eventDescription, eventCapacity, hostUser,[]));
 
             //listOfEvents med nyt event stringifies og overskriver storedListOfEvents i localStorage
             let listOfEventsString = JSON.stringify(listOfEvents);
@@ -148,30 +148,45 @@ class Events {
             let eventKapacitet = document.createElement("p");
 
             //Metode der skal beregne om et event har kapacitet
-            //Beskriv yderligere!
+            //Variabel der tager det valgte index af listOfEvents
             let events = listOfEvents[i];
+            //Variabel der bestemmer antal pladser tilbage i et event, ved at trække længden af array'et eventParticipants fra eventCapacity som er et nummer
             let remainingCapacity = events.eventCapacity - events.eventParticipants.length;
             eventKapacitet.innerHTML = remainingCapacity;
             eventKapacitet.classList.add("eventDisplay");
             document.getElementById("eventKapacitet").appendChild(eventKapacitet);
 
-            //Tilmeldningsknap (beskriv yderligere)
+            //Tilmeldningsknap
             let tilmeldEvent = document.createElement("p");
             tilmeldEvent.innerHTML = "Tilmeld";
             tilmeldEvent.classList.add("eventDisplay");
             //Jeg kunne ikke få værdien af index i loop ud af loop'et uden at funktionen kørte sammen med loop'et, hvorfor funktionen er skrevet herinde
             //addeventlistener der tjekker om der bliver klikket på noden. Hvis der klikkes køres funktionen nedenfor.
             tilmeldEvent.addEventListener('click', function () {
-                //if-statement der ser hvis ingen bruger er logget ind
-                if (signedIn == null) {
-                    alert("Du skal være logget ind for at deltage!");
-                } else if (remainingCapacity === 0) {
-                    alert("Der er desværre ikke flere pladser :(");
-                } else {
                 //variabel der tager det event der bliver klikket på
-                let currentEvent = listOfEvents[i];
-                //variabel der tager de nuværende deltagende brugere, hvor den bruger der er logget ind, bliver push'et til
-                let currentParticipants = currentEvent.eventParticipants;
+                var currentEvent = listOfEvents[i];
+                //variabel der tager de nuværende deltagende brugere
+                var currentParticipants = currentEvent.eventParticipants;
+
+                //for-loop der ser om bruger allerede deltager i event
+                for (let j=0; j<currentParticipants.length; j++) {
+                    if (signedIn.username === currentParticipants[j]) {
+                        var participation = true;
+                    }
+                }
+                //if-statement der henter resultatet af for-loop foroven
+                if (participation) {
+                    alert("Du deltager allerede i " + currentEvent.eventName);
+                } //else if-statement der ser hvis ingen bruger er logget ind
+                else if (signedIn == null) {
+                    alert("Du skal være logget ind for at deltage!");
+                } //else if-statement der ser om der er flere pladser
+                else if (remainingCapacity === 0) {
+                    alert("Der er desværre ikke flere pladser :(");
+                } //hvis alle statements foroven er false, deltager brugeren i det valgte event
+                else {
+
+                //let currentParticipants = currentEvent.eventParticipants; (behøves?)
                 currentParticipants.push(signedIn.username);
                 //det nye event med deltagere overskriver det gamle, og gemmes i localStorage
                 currentEvent.eventParticipants = currentParticipants;
