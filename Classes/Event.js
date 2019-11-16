@@ -169,6 +169,7 @@ class Events {
                 let currentParticipants = currentEvent.eventParticipants;
 
                 //for-loop der ser om bruger allerede deltager i event
+                //var participation;
                 for (let j=0; j<currentParticipants.length; j++) {
                     if (signedIn.username === currentParticipants[j]) {
                         var participation = true;
@@ -193,39 +194,32 @@ class Events {
                     localStorage.setItem("storedListOfEvents", listOfEventsString);
                     alert("Du deltager nu i: " + currentEvent.eventName);
                     window.open("../HTML/Events.html", "_self");
+
+                    //Tilføjer det event som signedIn deltager i, til signedIn.joinedEvents
+                    let usersEvents = signedIn.joinedEvents;
+
+                    //Event'et pushes til brugerens joinedEvents array og erstatter localStorage med key: "signedIn"
+                    usersEvents.push(currentEvent.eventName);
+                    let signedInString = JSON.stringify(signedIn);
+                    localStorage.setItem("signedIn", signedInString);
+
                 }
             });
             document.getElementById("tilmeldEvent").appendChild(tilmeldEvent);
+
+
+
+
         }
 
     };
     //Metode der viser events bruger deltager i
+    //Virker! Skal bare gøres pæn!
     static showJoinedEvents() {
-        let participatingEvents = [];
-        let signedInUsername = signedIn.username;
-        let participants = listOfEvents[0].eventParticipants;
-        for (let i=0; i<participants; i++) {
-            if (participants[i] === signedInUsername) {
-                participatingEvents.push(listOfEvents[0].eventName);
-                console.log(participatingEvents);
-            }
-        }
-
-        //let participatingEvent = [];
-        //let signedInUsername = signedIn.username;
-        //for (let i=0; i<listOfEvents; i++){
-        //    let participants = listOfEvents[i].eventParticipants;
-        //    for (let j=0; j<participants; j++){
-        //        if (participants[j] === signedInUsername) {
-        //            participatingEvent.push(listOfEvents[i].eventName);
-        //            console.log(participatingEvent);
-        //        }
-        //    }
+        let joinedEvents = signedIn.joinedEvents;
+        console.log(joinedEvents);
     };
     //Metode der lader bruger "forlade" event
-    static leave() {
-
-    };
     //Lav editEvent
     //Lav deleteEvent
 }

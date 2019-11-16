@@ -14,8 +14,8 @@ class Users {
     static dummyUsers() {
         if (localStorage.getItem("storedListOfUsers") == null) {
             let listOfUsers = [];
-            listOfUsers.push(new Users("Thorn","password","32","København","Fodbold for nybegyndere","Vinsmagning"));
-            listOfUsers.push(new Users("Peter","Kanin","224","Eventyrskoven",["Kaninfodring"],"Kaninræs"));
+            listOfUsers.push(new Users("Thorn","password","32","København",[],["Vinsmagning"]));
+            listOfUsers.push(new Users("Peter","Kanin","224","Eventyrskoven",[],["Kaninræs"]));
 
             //listOfUsers stringifies, så de kan tilknyttes localStorage
             let listOfUsersString = JSON.stringify(listOfUsers);
@@ -42,6 +42,22 @@ class Users {
     };
     //Klasse-metode der fjerner nøglen "signedIn" og åbner forsiden
     static logout() {
+        //signedIn skal opdatere den specifikke user i storedListOfUsers
+        //virker ikke :(
+
+        var userIndex;
+        let uName = signedIn.username;
+        for (let i=0; i<listOfUsers; i++) {
+            if (uName === listOfUsers[i].username) {
+                uName = i;
+            }
+        }
+
+        console.log(userIndex);
+        //listOfUsers.splice(userIndex, 0, signedIn);
+        //let listOfUsersString = JSON.stringify(listOfUsers);
+        //localStorage.setItem("storedListOfUsers", listOfUsersString);
+
         localStorage.removeItem("signedIn");
         window.open("../HTML/home.html", "_self")
     };
@@ -91,7 +107,7 @@ class Users {
         //Opretter bruger ved true approvedInput
         if (approvedInput) {
             //Ny bruger "pushes" til listOfUsers array
-            listOfUsers.push(new Users(newUsername, newPassword, newAge, "", "", ""));
+            listOfUsers.push(new Users(newUsername, newPassword, newAge, "", [], []));
 
             //listOfUsers stringifies og overskriver storedListOfUsers i localStorage
             let listOfUsersString = JSON.stringify(listOfUsers);
