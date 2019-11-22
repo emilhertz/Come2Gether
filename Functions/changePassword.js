@@ -13,24 +13,27 @@ changePasswordButton.onclick = function (p) {
 
     p.preventDefault();
 
-    var oldPassword = document.getElementById(oldPassword);
-    var newPassword = document.getElementById(newPassword);
-    var repeatNewPassword = document.getElementById(repeatNewPassword);
+    let oldPassword = document.getElementById(oldPassword);
+    let newPassword = document.getElementById(newPassword);
+    let repeatNewPassword = document.getElementById(repeatNewPassword);
 
+    if (oldPassword === signedIn.password || newPassword === repeatNewPassword)
 
+}
+
+/*
 
     // Validerings form - virker ikke
-    var approvedInput = true;
-    var errorMessage = "";
+    let approvedInput = true;
+    let errorMessage = "";
 
     //Ser om gammelt password er korrekt - virker ikke
-    if (oldPassword != listOfUsers) {
+    if (oldPassword != signedIn.password) {
         approvedInput = false;
-        errorMessage += "Indtastede password stemmer ikke overens med password gemt i databasen \n";
-
+        errorMessage += "Du har skrevet dit gamle password forkert";
     }
 
-    if (newPassword.length <= 5) {
+    if (newPassword.length < 5) {
       approvedInput = false;
       errorMessage += "Dit nye passwprd skal bestå a mindst 6 tegn \n";
    }
@@ -39,13 +42,11 @@ changePasswordButton.onclick = function (p) {
         errorMessage += "Dit nye password stemmer ikke overens med det du har skrevet i gentag nyt password \n";
     }
 
+
     if (approvedInput) {
-        listOfUsers.push(User(newPassword));
-
-        var listOfIUsersString = JSON.stringify(listOfUsers);
-        localStorage.setItem("storedListOfUsers", listOfIUsersString);
-
+        signedIn.password = newPassword;
         alert(UserName + "har nu skiftet password");
+
     } else { alert(errorMessage);}
 }
 */
