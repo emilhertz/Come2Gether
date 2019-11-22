@@ -14,11 +14,10 @@ class Utility {
             localStorage.setItem("storedListOfUsers", listOfUsersString);
         }
     };
-    //Metode der med et for-loop append'er event-information til specifikke div's
+    //Metode der med et for-loop append'er specifik event-information til specifikke div's i Events.html
     static displayEvents() {
         //for-loop der kører igennem alle events
         for (let i=0; i<listOfEvents.length; i++) {
-
             //node med html-tag P skabes og får tilknyttet string (eventnavn[i])
             let eventName = document.createElement("p");
             eventName.innerHTML = listOfEvents[i].eventName;
@@ -65,6 +64,7 @@ class Utility {
             //Variabel der tager det valgte index af listOfEvents
             let events = listOfEvents[i];
             //Variabel der bestemmer antal pladser tilbage i et event, ved at trække længden af array'et eventParticipants fra eventCapacity som er et nummer
+            //Se om dette kan blive selvstændig metode
             let remainingCapacity = events.eventCapacity - events.eventParticipants.length;
             eventKapacitet.innerHTML = remainingCapacity;
             eventKapacitet.classList.add("eventDisplay");
@@ -101,7 +101,7 @@ class Utility {
                 } //hvis alle statements foroven er false, deltager brugeren i det valgte event (koden forneden kaldes)
                 else {
                     //brugeren der er logget ind, pushes til array'et currentParticipants, som er defineret foroven
-                    currentParticipants.push(signedIn.username);
+                    currentParticipants.push(signedIn.Username);
                     //det nye array med deltagere overskriver det gamle, og gemmes i localStorage
                     currentEvent.eventParticipants = currentParticipants;
                     let listOfEventsString = JSON.stringify(listOfEvents);
@@ -110,7 +110,7 @@ class Utility {
                     window.open("../HTML/Events.html", "_self");
 
                     //Tilføjer det event som signedIn deltager i, til signedIn.joinedEvents
-                    let usersEvents = signedIn.joinedEvents;
+                    let usersEvents = signedIn.JoinedEvents;
 
                     //Event'et pushes til brugerens joinedEvents array og erstatter localStorage med key: "signedIn"
                     usersEvents.push(currentEvent.eventName);
@@ -122,8 +122,48 @@ class Utility {
             document.getElementById("tilmeldEvent").appendChild(tilmeldEvent);
         }
     };
+    //login metode
+    static login() {
+        let username = document.getElementById("loginUsername");
+        let password = document.getElementById("loginPassword");
 
+        //for-loop der bruger operators til at se om indtastede værdier stemmer overens med listOfUsers-array, som er gemt i localStorage
+        for (let i=0; i < listOfUsers.length; i++) {
+            if (username.value === listOfUsers[i].username && password.value === listOfUsers[i].password) {
+                //Gemmer bruger som logger ind i localStorage og som string
+                let signedIn = JSON.stringify(listOfUsers[i]);
+                localStorage.setItem("signedIn", signedIn);
+                // Åbner home.html
+                window.open("../HTML/home.html", "_self");
+                return
+            }
+        }
+        alert("Forkert brugernavn eller password :(")
+    };
+    //Metode der finder index af signedIn i listOfUsers
+    static index () {
+        for (let i=0; i<listOfUsers.length; i++) {
+            if (listOfUsers[i].username === signedIn.Username) {
+                return index = i;
+            }
+        }
+    };
+    //Metode der fjerner nøglen "signedIn" og åbner forsiden
+    static logout() {
+        //signedIn skal opdatere den specifikke user i storedListOfUsers
+        Utility.index();
+        listOfUsers.splice(index, 1);
+        listOfUsers.push(signedIn);
+        let listOfUsersString = JSON.stringify(listOfUsers);
+        localStorage.setItem("storedListOfUsers", listOfUsersString);
+        localStorage.removeItem("signedIn");
+        window.open("../HTML/home.html", "_self")
+    };
 }
 
 //Metoden dummyUsers bliver kaldt, så det sikres at der er værdier i localStorage "storedListOfUsers"
 Utility.dummyUsers();
+
+//variabler defineret i global-scope
+var index;
+var listOfUsers = JSON.parse(localStorage.getItem("storedListOfUsers"));

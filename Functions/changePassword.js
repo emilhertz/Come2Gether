@@ -8,7 +8,7 @@
 
 
 //gammel kode
-var changePasswordButton = document.getElementById("changePassword");
+/*var changePasswordButton = document.getElementById("changePassword");
 changePasswordButton.onclick = function (p) {
 
     p.preventDefault();
@@ -48,3 +48,4 @@ changePasswordButton.onclick = function (p) {
         alert(UserName + "har nu skiftet password");
     } else { alert(errorMessage);}
 }
+*/

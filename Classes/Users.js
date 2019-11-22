@@ -29,31 +29,6 @@ class Users {
     set Password (newPassword) {
         this.password = newPassword;
     }
-    //login metode
-    static login() {
-        let username = document.getElementById("loginUsername");
-        let password = document.getElementById("loginPassword");
-
-        //for-loop der bruger operators til at se om indtastede værdier stemmer overens med listOfUsers-array, som er gemt i localStorage
-        for (let i=0; i < listOfUsers.length; i++) {
-            if (username.value === listOfUsers[i].username && password.value === listOfUsers[i].password) {
-                //Gemmer bruger som logger ind i localStorage og som string
-                let signedIn = JSON.stringify(listOfUsers[i]);
-                localStorage.setItem("signedIn", signedIn);
-                // Åbner home.html
-                window.open("../HTML/home.html", "_self");
-                return
-            }
-        }
-        alert("Forkert brugernavn eller password :(")
-    };
-    //Klasse-metode der fjerner nøglen "signedIn" og åbner forsiden
-    static logout() {
-        //signedIn skal opdatere den specifikke user i storedListOfUsers
-
-        localStorage.removeItem("signedIn");
-        window.open("../HTML/home.html", "_self")
-    };
     //Klasse-metode der kan oprette brugere
     static create() {
         //Gemmer informationer fra HTML-form i variabler
@@ -119,9 +94,11 @@ class Users {
 
 
 
-//variabler i global scope, så de kan tilgåes i flere dokumenter
-var listOfUsers = JSON.parse(localStorage.getItem("storedListOfUsers"));
+
 
 var signedIn = JSON.parse(localStorage.getItem("signedIn"));
 //Gør objektet signedIn til en indstands af Users-klassen, således at Users-indstands metoder kan bruges
+//if-statement for at undgå syntax-fejl
+if (signedIn) {
 signedIn = new Users(signedIn.username, signedIn.password, signedIn.age, signedIn.location, signedIn.joinedEvents, signedIn.hostedEvents);
+}
