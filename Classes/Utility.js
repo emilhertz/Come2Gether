@@ -1,5 +1,5 @@
 //Utility-klasse der indeholder static-metoder
-//Static-metoder er defineret på selve klassen, og ikke en klasse-indstands
+//Static-metoder er defineret på selve klassen, og ikke  klasse-indstandser
 class Utility {
     //Metode der med et if-statement undersøger om localStorage med nøglen "storedListOfUsers"
     //er null. Hvis det er sandt, skabes array'et listOfUsers, hvor der pushes to hard-codede brugere ind.
@@ -13,6 +13,96 @@ class Utility {
             let listOfUsersString = JSON.stringify(listOfUsers);
             localStorage.setItem("storedListOfUsers", listOfUsersString);
         }
+    };
+    //dummyEvents - samme fremgangsmåde som foroven
+    static dummyEvent() {
+        if (localStorage.getItem("storedListOfEvents") == null) {
+            let listOfEvents = [];
+            // Hardcodede værdier pushes til array
+            listOfEvents.push(new Events("Fælles madlavning", "København", "Mad", "17:30, d.31/12-2019", "Vi mødes laver lidt lækkert mad og drikker lidt vin. s.u. d. 24/12-2019", "4", "Thorn",[]));
+            listOfEvents.push(new Events("Motionsfodbold", "Odense", "Sport", "17:00, d.20/10-2019", "Vi mødes til lidt hygge fodbold, fodboldstøvler er ikke et krav men anbefales", "22", "Thorn", []));
+            listOfEvents.push(new Events("Kulturnat", "København", "Kultur", "20:00, d.12/10-2019", "Vi går en tur rundt i byen og ser på hvad byen kan", "100", "Peter", []));
+            listOfEvents.push(new Events("Pubcrawl", "København", "Bytur", "16:00, d.1/11-2019", "Vi tager en tur op gennem Gothersgade og besøger lidt forskellige barer på J-dag", "25", "Thorn", []));
+            listOfEvents.push(new Events("Koncert med Khalid", "Aarhus", "Koncert", "11:00, 27/11-2019", "Vi tager ind og hører Khalid sammen. s.u. d 25/10-2019", "300", "Peter", []));
+
+            //listOfEvents stringifies, så de kan tilknyttes localStorage
+            let listOfEventsString = JSON.stringify(listOfEvents);
+            localStorage.setItem("storedListOfEvents", listOfEventsString);
+        }
+    };
+    //createEvent metode
+    static createEvent() {
+        //Gemmer informationer fra nyt event-form i variabler
+        let eventName = document.getElementById("eventName").value;
+        let eventCapacity = document.getElementById("capacity").value;
+        let eventDescription = document.getElementById("eventDescription").value;
+
+        //Indtil der findes en løsning med adresser, bruges kun byer
+        let eventCity = document.getElementById("lokation").value;
+
+        //Henter eventCategory og ser hvilken kategori er valgt med for-loop
+        let categoryButtons = document.getElementsByName("categories");
+        let eventCategory = "";
+
+        let validRadio = false;
+        for (let i=0; i<categoryButtons.length; i++){
+            if (categoryButtons[i].checked) {
+                eventCategory = categoryButtons[i].value;
+                validRadio = true;
+            }
+        }
+        //Valideringsform
+        let approvedInput = true;
+        let errorMessage = "";
+        //Tjekker at eventnavn er større eller lig med 3 og mindre end 20 tegn
+        if (eventName.length <= 3 || eventName.length > 21) {
+            approvedInput = false;
+            errorMessage += "Eventnavn skal være mellem 3 og 20 tegn \n";
+        }
+        //Tjekker at antal pladser er mellem 3 og 100
+        if (eventCapacity < 2 || eventCapacity > 101) {
+            approvedInput = false;
+            errorMessage += "Antal pladser skal være mellem 3 og 100 \n";
+        }
+        //Tjekker at en af kategorierne er valgt
+        if (validRadio === false) {
+            approvedInput = false;
+            errorMessage += "Du skal vælge en katagori \n";
+        }
+        //Ser om lokalitet er valgt
+        if (eventCity === "Byer") {
+            approvedInput = false;
+            errorMessage += "Vælg venligst en by! \n";
+        }
+        //Tjekker at der er skrevet i beskrivelses boksen
+        if (eventDescription === "") {
+            approvedInput = false;
+            errorMessage += "Der skal skrives en beskrivelse til dit event \n";
+        }
+        //Opretter event ved true approvedInput
+        if (approvedInput) {
+            //Henter bruger som er logget ind, så denne tilknyttes event som hostUser
+            let hostUser = signedIn.username;
+
+            //Push'er nyt event til listOfEvents
+            listOfEvents.push(new Events(eventName, eventCity, eventCategory, "Tidspunkt", eventDescription, eventCapacity, hostUser,[]));
+
+            //listOfEvents med nyt event stringifies og overskriver storedListOfEvents i localStorage
+            let listOfEventsString = JSON.stringify(listOfEvents);
+            localStorage.setItem("storedListOfEvents", listOfEventsString);
+
+            //Giver besked om nyt event er oprettet
+            alert(eventName + " er nu oprettet som event!");
+
+            //Åbner Events.html når event er oprettet
+            window.open("../HTML/Events.html", "_self");
+        } else { alert(errorMessage);}
+    };
+    //Metode der viser events bruger deltager i
+    //Virker! Skal bare gøres pæn!
+    static showJoinedEvents() {
+        let joinedEvents = signedIn.joinedEvents;
+        console.log(joinedEvents);
     };
     //Metode der med et for-loop append'er specifik event-information til specifikke div's i Events.html
     static displayEvents() {
@@ -122,6 +212,65 @@ class Utility {
             document.getElementById("tilmeldEvent").appendChild(tilmeldEvent);
         }
     };
+    //Klasse-metode der kan oprette brugere
+    static createUser() {
+        //Gemmer informationer fra HTML-form i variabler
+        let newUsername = document.getElementById("username").value;
+        let newPassword = document.getElementById("password").value;
+        let newAge = document.getElementById("age").value;
+
+        //Valideringsform fra BIS-øvelsestime
+        var approvedInput = true;
+        var errorMessage = "";
+
+        //Ser om username er tomt, for kort, eller eksisterer i database
+        if (newUsername === "") {
+            approvedInput = false;
+            errorMessage += "Du skal indtaste et brugernavn! \n";
+        }
+
+        //Ser om længde på username passer
+        if (newUsername.length <= 3) {
+            approvedInput = false;
+            errorMessage += "Brugernavnet skal mindst være 4 tegn! \n";
+        }
+
+        //for-loop der ser om brugernavn i forvejen bliver brugt
+        for (let i=0; i<listOfUsers.length; i++) {
+            if (newUsername === listOfUsers[i].username) {
+                approvedInput = false;
+                errorMessage += "Brugernavnet eksisterer allerede :( \nVælg venligst et andet. (se localStorage) \n";
+            }
+        }
+
+        //Ser om alderen er et tal mellem 13 og 99
+        if (newAge < 13 || newAge > 99) {
+            approvedInput = false;
+            errorMessage += "Du skal være over 13 år (og yngre end 99 år) for at oprette en bruger \n";
+        }
+
+        //Ser om password er udfyldt og om det er for kort (skal minimum være 6 tegn)
+        if (newPassword.length <= 5) {
+            approvedInput = false;
+            errorMessage += "Password skal minimum bestå af 6 tegn \n";
+        }
+
+        //Opretter bruger ved true approvedInput
+        if (approvedInput) {
+            //Ny bruger "pushes" til listOfUsers array
+            listOfUsers.push(new Users(newUsername, newPassword, newAge, "", [], []));
+
+            //listOfUsers stringifies og overskriver storedListOfUsers i localStorage
+            let listOfUsersString = JSON.stringify(listOfUsers);
+            localStorage.setItem("storedListOfUsers", listOfUsersString);
+
+            //Giver besked om ny bruger er oprettet
+            alert(newUsername + " er nu oprette som bruger!");
+
+            //Åbner home.html når bruger er oprettet
+            window.open("../HTML/home.html", "_self");
+        } else { alert(errorMessage);}
+    };
     //login metode
     static login() {
         let username = document.getElementById("loginUsername");
@@ -151,8 +300,10 @@ class Utility {
     //Metode der fjerner nøglen "signedIn" og åbner forsiden
     static logout() {
         //signedIn skal opdatere den specifikke user i storedListOfUsers
+        //beskriv yderligere
         Utility.index();
         listOfUsers.splice(index, 1);
+        //kunne ikke få splice til at indsætte, så derfor push
         listOfUsers.push(signedIn);
         let listOfUsersString = JSON.stringify(listOfUsers);
         localStorage.setItem("storedListOfUsers", listOfUsersString);
@@ -161,9 +312,18 @@ class Utility {
     };
 }
 
-//Metoden dummyUsers bliver kaldt, så det sikres at der er værdier i localStorage "storedListOfUsers"
+//Metoderne dummyUsers/Events bliver kaldt, så det sikres at der er værdier i localStorage
 Utility.dummyUsers();
+Utility.dummyEvent();
 
 //variabler defineret i global-scope
 var index;
 var listOfUsers = JSON.parse(localStorage.getItem("storedListOfUsers"));
+var listOfEvents = JSON.parse(localStorage.getItem("storedListOfEvents"));
+
+var signedIn = JSON.parse(localStorage.getItem("signedIn"));
+//Gør objektet signedIn til en indstands af Users-klassen, således at Users-indstands metoder kan bruges
+//if-statement for at undgå syntax-fejl
+if (signedIn) {
+    signedIn = new Users(signedIn.username, signedIn.password, signedIn.age, signedIn.location, signedIn.joinedEvents, signedIn.hostedEvents);
+}
