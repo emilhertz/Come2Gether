@@ -8,20 +8,27 @@ class Users {
         this.joinedEvents = joinedEvents;
         this.hostedEvents = hostedEvents;
     };
-
-    //Klasse-metode der med et if-statement undersøger om localStorage med nøglen "storedListOfUsers"
-    //er null. Hvis det er sandt, laver array'et listOfUsers, hvor der pushes to hard-codede brugere ind.
-    static dummyUsers() {
-        if (localStorage.getItem("storedListOfUsers") == null) {
-            let listOfUsers = [];
-            listOfUsers.push(new Users("Thorn","password","32","København",[],["Vinsmagning"]));
-            listOfUsers.push(new Users("Peter","Kanin","224","Eventyrskoven",[],["Kaninræs"]));
-
-            //listOfUsers stringifies, så de kan tilknyttes localStorage
-            let listOfUsersString = JSON.stringify(listOfUsers);
-            localStorage.setItem("storedListOfUsers", listOfUsersString);
-        }
-    };
+    get Username () {
+        return this.username;
+    }
+    get Password () {
+        return this.password;
+    }
+    get Age () {
+        return this.age;
+    }
+    get Location () {
+        return this.location;
+    }
+    get JoinedEvents () {
+        return this.joinedEvents;
+    }
+    get HostedEvents () {
+        return this.hostedEvents;
+    }
+    set Password (newPassword) {
+        this.password = newPassword;
+    }
     //login metode
     static login() {
         let username = document.getElementById("loginUsername");
@@ -43,20 +50,6 @@ class Users {
     //Klasse-metode der fjerner nøglen "signedIn" og åbner forsiden
     static logout() {
         //signedIn skal opdatere den specifikke user i storedListOfUsers
-        //virker ikke :(
-
-        var userIndex;
-        let uName = signedIn.username;
-        for (let i=0; i<listOfUsers; i++) {
-            if (uName === listOfUsers[i].username) {
-                uName = i;
-            }
-        }
-
-        console.log(userIndex);
-        //listOfUsers.splice(userIndex, 0, signedIn);
-        //let listOfUsersString = JSON.stringify(listOfUsers);
-        //localStorage.setItem("storedListOfUsers", listOfUsersString);
 
         localStorage.removeItem("signedIn");
         window.open("../HTML/home.html", "_self")
@@ -124,9 +117,11 @@ class Users {
     //Implmenter slet bruger metode (minSide.html)
 }
 
-//Metoden dummyUsers bliver kaldt, så det sikres at der er værdier i localStorage "storedListOfUsers"
-Users.dummyUsers();
+
 
 //variabler i global scope, så de kan tilgåes i flere dokumenter
 var listOfUsers = JSON.parse(localStorage.getItem("storedListOfUsers"));
+
 var signedIn = JSON.parse(localStorage.getItem("signedIn"));
+//Gør objektet signedIn til en indstands af Users-klassen, således at Users-indstands metoder kan bruges
+signedIn = new Users(signedIn.username, signedIn.password, signedIn.age, signedIn.location, signedIn.joinedEvents, signedIn.hostedEvents);

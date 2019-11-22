@@ -1,3 +1,13 @@
+//Forslag til fremgangsmåde
+
+//lav et if-statement der ser om en bruger har indtastet sit gamle password rigtigt (du får det gamle password ved at skrive signedIn.password)
+
+//Hvis ja, kald signedIn.newPassword(detNyePassword)
+
+//Hvis nej, giv alert
+
+
+//gammel kode
 var changePasswordButton = document.getElementById("changePassword");
 changePasswordButton.onclick = function (p) {
 
