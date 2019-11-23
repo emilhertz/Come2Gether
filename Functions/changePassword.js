@@ -16,10 +16,10 @@ changePasswordButton.onclick = function (p) {
     let repeatNewPassword = document.getElementById("repeatNewPassword");
 
     if (oldPassword === signedIn.password || newPassword === repeatNewPassword) {
-        signedIn.setItem("Password" newPassword);
+        signedIn.setItem("Password", newPassword);
 
     }
-}
+};
 
 //gammel kode
 /*

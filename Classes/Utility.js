@@ -99,10 +99,22 @@ class Utility {
         } else { alert(errorMessage);}
     };
     //Metode der viser events bruger deltager i
-    //Virker! Skal bare gøres pæn!
+    //Virker, MEN BESVÆRLIGT AT FJERNE DELTAGELSE, da man både deltager i selve event, og på siden bruger
+    //Gør mere smidigt
     static showJoinedEvents() {
-        let joinedEvents = signedIn.joinedEvents;
-        console.log(joinedEvents);
+        let joinedEvents = signedIn.JoinedEvents;
+        for (let i=0; i<joinedEvents.length; i++) {
+            let eventName = document.createElement("p");
+            var remove = document.createElement("button");
+            eventName.innerHTML = joinedEvents[i];
+            remove.innerHTML = "Afmeld";
+            eventName.appendChild(remove);
+            document.getElementById("participating_events").appendChild(eventName);
+            remove.onclick = function () {
+                leftEvent = joinedEvents[i];
+                console.log(leftEvent);
+            };
+        }
     };
     //Metode der med et for-loop append'er specifik event-information til specifikke div's i Events.html
     static displayEvents() {
@@ -318,6 +330,7 @@ Utility.dummyEvent();
 
 //variabler defineret i global-scope
 var index;
+var leftEvent;
 var listOfUsers = JSON.parse(localStorage.getItem("storedListOfUsers"));
 var listOfEvents = JSON.parse(localStorage.getItem("storedListOfEvents"));
 

@@ -11,10 +11,5 @@ if (signedIn == null) {
 
 // Skjuler opret-event side når ingen bruger er logget ind
 if (signedIn == null) {
-    document.getElementById("opret_event").style.visibility = "hidden";
-}
-
-// Skjuler Min side når ingen bruger er logget ind
-if (signedIn == null) {
-    document.getElementById("min_side").style.visibility = "hidden";
+    document.getElementById("only_login").style.visibility = "hidden";
 }

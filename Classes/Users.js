@@ -29,6 +29,5 @@ class Users {
     set Password (newPassword) {
         this.password = newPassword;
     }
-    //Implementer ændre password metode (minSide.html)
     //Implmenter slet bruger metode (minSide.html)
 }

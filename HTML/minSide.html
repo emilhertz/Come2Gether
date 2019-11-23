@@ -18,7 +18,7 @@
     </style>
 </head>
 
-<body>
+<body onload="Utility.showJoinedEvents()">
 
 <h1 align="center">Come2Gether</h1>
 
@@ -27,10 +27,8 @@
     <a href="home.html">Hjem</a>
     <a href="Events.html">Events</a>
     <a class="active" href="about_us.html">Om os</a>
-    <div id="opret_event">
-        <a href="createEvent.html">Opret event</a></div>
-    <div id="min_side">
-        <a href="minSide.html">Min side</a></div>
+    <a href="createEvent.html">Opret event</a>
+    <a href="minSide.html">Min side</a>
 
 
     <div id="logout_button">
@@ -39,14 +37,13 @@
         <li style="float:right"><a href="Login.html">Login</a></li></div>
 </div>
 
-<h2>Her kan du se de event du har deltaget i tidligere, samt ændre din kode! </h2>
+<h2>Her kan du se de events du deltager i, samt ændre din kode! </h2>
+
+<h3>Events du deltager i:</h3>
+<div id="participating_events"></div>
 
 <form>
-    Tidligere deltaget events:
-    <br>
-    <br>
-    Ændre din kode her:
-    <br>
+    <h3>Ændre din kode her:</h3>
     <!-- er ikke færdigt endnu -->
     <input type="password" id="oldPassword" value="" placeholder="Gamle kodeord"/>
     <br>
@@ -61,9 +58,6 @@
 </form>
 
 <br>
-<button onclick="Utility.showJoinedEvents()" id="myPage">Vis events jeg deltager i</button>
-<br>
-<p id="showJoinedEvents"></p>
 
 <script src="../Classes/Users.js"></script>
 <script src="../Classes/Event.js"></script>
