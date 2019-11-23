@@ -6,18 +6,23 @@
 
 //Hvis nej, giv alert
 
-
-//gammel kode
-/*var changePasswordButton = document.getElementById("changePassword");
+var changePasswordButton = document.getElementById("changePassword");
 changePasswordButton.onclick = function (p) {
 
-    p.preventDefault();
 
-    let oldPassword = document.getElementById(oldPassword);
-    let newPassword = document.getElementById(newPassword);
-    let repeatNewPassword = document.getElementById(repeatNewPassword);
 
-    if (oldPassword === signedIn.password || newPassword === repeatNewPassword)
+    let oldPassword = document.getElementById("oldPassword");
+    let newPassword = document.getElementById("newPassword");
+    let repeatNewPassword = document.getElementById("repeatNewPassword");
+
+    if (oldPassword === signedIn.password || newPassword === repeatNewPassword) {
+        signedIn.setItem("Password" newPassword);
+
+    }
+}
+
+//gammel kode
+/*
 
 }
 
