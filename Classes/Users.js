@@ -1,11 +1,10 @@
 // User-klasse
 class Users {
-    constructor(username, password, age, location, joinedEvents, hostedEvents) {
+    constructor(username, password, age, location, hostedEvents) {
         this.username = username;
         this.password = password;
         this.age = age;
         this.location = location;
-        this.joinedEvents = joinedEvents;
         this.hostedEvents = hostedEvents;
     };
     get Username () {

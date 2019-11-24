@@ -6,8 +6,8 @@ class Utility {
     static dummyUsers() {
         if (localStorage.getItem("storedListOfUsers") == null) {
             let listOfUsers = [];
-            listOfUsers.push(new Users("Thorn","password","32","København",[],["Skal rettes"]));
-            listOfUsers.push(new Users("Peter","Kanin","224","Eventyrskoven",[],["Skal rettes"]));
+            listOfUsers.push(new Users("Thorn","password","32","København",[]));
+            listOfUsers.push(new Users("Peter","Kanin","224","Eventyrskoven",[]));
 
             //listOfUsers stringifies, så de kan tilknyttes localStorage
             let listOfUsersString = JSON.stringify(listOfUsers);
@@ -99,21 +99,16 @@ class Utility {
         } else { alert(errorMessage);}
     };
     //Metode der viser events bruger deltager i
-    //Virker, MEN BESVÆRLIGT AT FJERNE DELTAGELSE, da man både deltager i selve event, og på siden bruger
-    //Gør mere smidigt
+    //Ny-metode virker!
     static showJoinedEvents() {
-        let joinedEvents = signedIn.JoinedEvents;
-        for (let i=0; i<joinedEvents.length; i++) {
-            let eventName = document.createElement("p");
-            var remove = document.createElement("button");
-            eventName.innerHTML = joinedEvents[i];
-            remove.innerHTML = "Afmeld";
-            eventName.appendChild(remove);
-            document.getElementById("participating_events").appendChild(eventName);
-            remove.onclick = function () {
-                leftEvent = joinedEvents[i];
-                console.log(leftEvent);
-            };
+        //Nu kan minside vise hvilke events bruger deltager i
+        for (let i=0; i<listOfEvents.length; i++) {
+            let participants = listOfEvents[i].eventParticipants;
+            for (let j=0; j<participants.length; j++) {
+                if (signedIn.Username === participants[j]) {
+                    joinedEvents.push(listOfEvents[i].eventName);
+                }
+            }
         }
     };
     //Metode der med et for-loop append'er specifik event-information til specifikke div's i Events.html
@@ -211,13 +206,15 @@ class Utility {
                     alert("Du deltager nu i: " + currentEvent.eventName);
                     window.open("../HTML/Events.html", "_self");
 
-                    //Tilføjer det event som signedIn deltager i, til signedIn.joinedEvents
+                    //Koden forneden er et godt eksempel på, hvordan vi i udviklingen er blevet klogere
+
+                    /*//Tilføjer det event som signedIn deltager i, til signedIn.joinedEvents
                     let usersEvents = signedIn.JoinedEvents;
 
                     //Event'et pushes til brugerens joinedEvents array og erstatter localStorage med key: "signedIn"
                     usersEvents.push(currentEvent.eventName);
                     let signedInString = JSON.stringify(signedIn);
-                    localStorage.setItem("signedIn", signedInString);
+                    localStorage.setItem("signedIn", signedInString);*/
 
                 }
             });
@@ -311,17 +308,23 @@ class Utility {
     };
     //Metode der fjerner nøglen "signedIn" og åbner forsiden
     static logout() {
-        //signedIn skal opdatere den specifikke user i storedListOfUsers
-        //beskriv yderligere
+        //Først opdateres den specifikke user i storedListOfUsers
+        //Først kaldes index-metoden
         Utility.index();
+        //Derefter slettes denne bruger fra listOfUsers-array
         listOfUsers.splice(index, 1);
         //kunne ikke få splice til at indsætte, så derfor push
         listOfUsers.push(signedIn);
+        //Localstorage med key:storedListOfUsers opdateres
         let listOfUsersString = JSON.stringify(listOfUsers);
         localStorage.setItem("storedListOfUsers", listOfUsersString);
         localStorage.removeItem("signedIn");
         window.open("../HTML/home.html", "_self")
     };
+    //Metode der afmelder bruger fra event
+    static unsubscribe() {
+        //fjern bruger fra deltagende event
+    }
 }
 
 //Metoderne dummyUsers/Events bliver kaldt, så det sikres at der er værdier i localStorage
@@ -331,6 +334,7 @@ Utility.dummyEvent();
 //variabler defineret i global-scope
 var index;
 var leftEvent;
+var joinedEvents = [];
 var listOfUsers = JSON.parse(localStorage.getItem("storedListOfUsers"));
 var listOfEvents = JSON.parse(localStorage.getItem("storedListOfEvents"));
 
