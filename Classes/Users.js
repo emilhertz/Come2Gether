@@ -19,9 +19,6 @@ class Users {
     get Location () {
         return this.location;
     }
-    get JoinedEvents () {
-        return this.joinedEvents;
-    }
     get HostedEvents () {
         return this.hostedEvents;
     }

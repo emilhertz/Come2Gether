@@ -99,16 +99,31 @@ class Utility {
         } else { alert(errorMessage);}
     };
     //Metode der viser events bruger deltager i
-    //Ny-metode virker!
     static showJoinedEvents() {
-        //Nu kan minside vise hvilke events bruger deltager i
-        for (let i=0; i<listOfEvents.length; i++) {
+        //for-loop der går gennem alle events
+        for (let i = 0; i < listOfEvents.length; i++) {
             let participants = listOfEvents[i].eventParticipants;
-            for (let j=0; j<participants.length; j++) {
+            //for-loop der går gennem deltagere i event [i]
+            for (let j = 0; j < participants.length; j++) {
+                //if-statement der kontrollerer om signedIn deltager i event
                 if (signedIn.Username === participants[j]) {
                     joinedEvents.push(listOfEvents[i].eventName);
                 }
             }
+        }
+        //loop der opretter html-elementer der præsenterer events signedIn deltager i og dertilhørende afmeld-knapper
+        for (let i = 0; i < joinedEvents.length; i++) {
+            let event = document.createElement("p");
+            event.innerHTML = joinedEvents[i];
+            let cancel = document.createElement("button");
+            cancel.innerHTML = "Afmeld";
+            //denne fremgangsmåde sikrer at det specifikke event bliver valgt og kalder metoden unsubscribe
+            cancel.onclick = function () {
+                unsubscribedEvent = joinedEvents[i];
+                Utility.unsubscribe();
+            };
+            event.appendChild(cancel);
+            document.getElementById("participating_events").appendChild(event);
         }
     };
     //Metode der med et for-loop append'er specifik event-information til specifikke div's i Events.html
@@ -175,9 +190,9 @@ class Utility {
             //addeventlistener der tjekker om der bliver klikket på noden. Hvis der klikkes køres funktionen nedenfor.
             tilmeldEvent.addEventListener('click', function () {
                 //variabel der tager det event der bliver klikket på
-                let currentEvent = listOfEvents[i];
+                subscribedEvent = listOfEvents[i];
                 //variabel der tager de nuværende deltagende brugere
-                let currentParticipants = currentEvent.eventParticipants;
+                let currentParticipants = subscribedEvent.eventParticipants;
 
                 //for-loop der ser om bruger allerede deltager i event
                 //var participation;
@@ -188,7 +203,7 @@ class Utility {
                 }
                 //if-statement der henter resultatet af for-loop foroven
                 if (participation) {
-                    alert("Du deltager allerede i " + currentEvent.eventName);
+                    alert("Du deltager allerede i " + subscribedEvent.eventName);
                 } //else if-statement der ser hvis ingen bruger er logget ind
                 else if (signedIn == null) {
                     alert("Du skal være logget ind for at deltage!");
@@ -200,10 +215,10 @@ class Utility {
                     //brugeren der er logget ind, pushes til array'et currentParticipants, som er defineret foroven
                     currentParticipants.push(signedIn.Username);
                     //det nye array med deltagere overskriver det gamle, og gemmes i localStorage
-                    currentEvent.eventParticipants = currentParticipants;
+                    subscribedEvent.eventParticipants = currentParticipants;
                     let listOfEventsString = JSON.stringify(listOfEvents);
                     localStorage.setItem("storedListOfEvents", listOfEventsString);
-                    alert("Du deltager nu i: " + currentEvent.eventName);
+                    alert("Du deltager nu i: " + subscribedEvent.eventName);
                     window.open("../HTML/Events.html", "_self");
 
                     //Koden forneden er et godt eksempel på, hvordan vi i udviklingen er blevet klogere
@@ -212,7 +227,7 @@ class Utility {
                     let usersEvents = signedIn.JoinedEvents;
 
                     //Event'et pushes til brugerens joinedEvents array og erstatter localStorage med key: "signedIn"
-                    usersEvents.push(currentEvent.eventName);
+                    usersEvents.push(subscribedEvent.eventName);
                     let signedInString = JSON.stringify(signedIn);
                     localStorage.setItem("signedIn", signedInString);*/
 
@@ -298,7 +313,7 @@ class Utility {
         }
         alert("Forkert brugernavn eller password :(")
     };
-    //Metode der finder index af signedIn i listOfUsers
+    //Metode der bestemmer index af signedIn i listOfUsers
     static index () {
         for (let i=0; i<listOfUsers.length; i++) {
             if (listOfUsers[i].username === signedIn.Username) {
@@ -321,9 +336,36 @@ class Utility {
         localStorage.removeItem("signedIn");
         window.open("../HTML/home.html", "_self")
     };
+    //Metode der tilmelder bruger til event
+    static subscribe() {
+        for (let i=0; i<listOfEvents.length; i++) {
+            if (subscribedEvent === listOfEvents[i].eventName) {
+
+            }
+        }
+    }
     //Metode der afmelder bruger fra event
     static unsubscribe() {
-        //fjern bruger fra deltagende event
+        //for-loop der bestemmer index af event der skal afmeldes i listOfEvents
+        for (let i=0; i<listOfEvents.length; i++) {
+            if (unsubscribedEvent === listOfEvents[i].eventName) {
+                let participants = listOfEvents[i].eventParticipants;
+                //for-loop der fjerner signedIn fra event og opdaterer event i listOfEvents
+                for (let j=0; j<participants.length; j++) {
+                    if (signedIn.Username === participants[j]) {
+                        //fjerner signedIn fra participants
+                        participants.splice(j, 1);
+                        //erstatter det gamle event med det opdaterede
+                        listOfEvents.splice(i, 1, listOfEvents[i]);
+
+                        //opdaterer storedListOfEvents i localStorage
+                        let listOfEventsString = JSON.stringify(listOfEvents);
+                        localStorage.setItem("storedListOfEvents", listOfEventsString);
+                        location.reload();
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -333,8 +375,9 @@ Utility.dummyEvent();
 
 //variabler defineret i global-scope
 var index;
-var leftEvent;
 var joinedEvents = [];
+var subscribedEvent;
+var unsubscribedEvent;
 var listOfUsers = JSON.parse(localStorage.getItem("storedListOfUsers"));
 var listOfEvents = JSON.parse(localStorage.getItem("storedListOfEvents"));
 
