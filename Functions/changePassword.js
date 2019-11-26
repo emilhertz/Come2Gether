@@ -15,13 +15,14 @@ function changePassword() {
     let errorMessage = "";
 
 
-     if (oldPassword !== signedIn.password) {
+    if (oldPassword !== signedIn.password) {
         approvedInput = false;
         errorMessage += "Du har tastet dit gamle password forkert \n";}
     if (newPassword.length <= 5) {
         approvedInput = false;
         errorMessage += "Dit nye password skal være mindst 6 cifre langt \n";
-    } if (newPassword !== repeatNewPassword) {
+    }
+    if (newPassword !== repeatNewPassword) {
         approvedInput = false;
         errorMessage += "Dit nye password stemmer ikke overens med gentagelsen \n";
     }
