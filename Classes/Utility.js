@@ -327,9 +327,8 @@ class Utility {
         //Først kaldes index-metoden
         Utility.index();
         //Derefter slettes denne bruger fra listOfUsers-array
-        listOfUsers.splice(index, 1);
-        //kunne ikke få splice til at indsætte, så derfor push
-        listOfUsers.push(signedIn);
+        listOfUsers.splice(index, 1, signedIn);
+
         //Localstorage med key:storedListOfUsers opdateres
         let listOfUsersString = JSON.stringify(listOfUsers);
         localStorage.setItem("storedListOfUsers", listOfUsersString);
@@ -366,6 +365,10 @@ class Utility {
                 }
             }
         }
+    }
+    //Metode der beregner event kapacitet
+    static capacity() {
+
     }
 }
 

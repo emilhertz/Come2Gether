@@ -6,20 +6,17 @@
 
 //Hvis nej, giv alert
 
-var changePasswordButton = document.getElementById("changePassword");
-changePasswordButton.onclick = function (p) {
+function changePassword() {
+    let oldPassword = document.getElementById("oldPassword").value;
+    let newPassword = document.getElementById("newPassword").value;
+    let repeatNewPassword = document.getElementById("repeatNewPassword").value;
 
-
-
-    let oldPassword = document.getElementById("oldPassword");
-    let newPassword = document.getElementById("newPassword");
-    let repeatNewPassword = document.getElementById("repeatNewPassword");
-
-    if (oldPassword === signedIn.password || newPassword === repeatNewPassword) {
-        signedIn.setItem("Password", newPassword);
-
-    }
-};
+    if (oldPassword === signedIn.Password && newPassword === repeatNewPassword) {
+        signedIn.Password = newPassword;
+        let signedInString = JSON.stringify(signedIn);
+        localStorage.setItem("signedIn", signedInString);
+    } else {alert("Noget gik galt");}
+}
 
 //gammel kode
 /*
