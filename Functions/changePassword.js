@@ -11,44 +11,30 @@ function changePassword() {
     let newPassword = document.getElementById("newPassword").value;
     let repeatNewPassword = document.getElementById("repeatNewPassword").value;
 
-    if (oldPassword === signedIn.Password && newPassword === repeatNewPassword) {
-        signedIn.Password = newPassword;
-        let signedInString = JSON.stringify(signedIn);
-        localStorage.setItem("signedIn", signedInString);
-    } else {alert("Noget gik galt");}
-}
-
-//gammel kode
-/*
-
-}
-
-/*
-
-    // Validerings form - virker ikke
     let approvedInput = true;
     let errorMessage = "";
 
-    //Ser om gammelt password er korrekt - virker ikke
-    if (oldPassword != signedIn.password) {
+
+     if (oldPassword !== signedIn.password) {
         approvedInput = false;
-        errorMessage += "Du har skrevet dit gamle password forkert";
+        errorMessage += "Du har tastet dit gamle password forkert \n";}
+    if (newPassword.length <= 5) {
+        approvedInput = false;
+        errorMessage += "Dit nye password skal være mindst 6 cifre langt \n";
+    } if (newPassword !== repeatNewPassword) {
+        approvedInput = false;
+        errorMessage += "Dit nye password stemmer ikke overens med gentagelsen \n";
     }
 
-    if (newPassword.length < 5) {
-      approvedInput = false;
-      errorMessage += "Dit nye passwprd skal bestå a mindst 6 tegn \n";
-   }
-    if (newPassword != repeatNewPassword) {
-        approvedInput = false;
-        errorMessage += "Dit nye password stemmer ikke overens med det du har skrevet i gentag nyt password \n";
-    }
+     if (approvedInput) {
+         (oldPassword === signedIn.Password && newPassword === repeatNewPassword)
+        {
+            signedIn.Password = newPassword;
+            let signedInString = JSON.stringify(signedIn);
+            localStorage.setItem("signedIn", signedInString);
+            { alert( "Du har nu skiftet password");}
+        }}
+    else { alert(errorMessage);}
 
 
-    if (approvedInput) {
-        signedIn.password = newPassword;
-        alert(UserName + "har nu skiftet password");
-
-    } else { alert(errorMessage);}
 }
-*/
