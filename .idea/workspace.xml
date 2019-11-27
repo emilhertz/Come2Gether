@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="535024ab-3bbb-4543-afb5-e52b0efd9965" name="Default Changelist" comment="" />
+    <list default="true" id="535024ab-3bbb-4543-afb5-e52b0efd9965" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Functions/changePassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/Functions/changePassword.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +61,8 @@
       <workItem from="1574429603905" duration="4946000" />
       <workItem from="1574507249293" duration="5303000" />
       <workItem from="1574608363502" duration="8702000" />
-      <workItem from="1574758667327" duration="4952000" />
+      <workItem from="1574758667327" duration="5278000" />
+      <workItem from="1574846149354" duration="2047000" />
     </task>
     <servers />
   </component>
