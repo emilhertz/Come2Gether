@@ -1,19 +1,6 @@
-//Utility-klasse der indeholder static-metoder
-//Static-metoder er defineret på selve klassen, og ikke  klasse-indstandser
-class Utility {
-    //Metode der med et if-statement undersøger om localStorage med nøglen "storedListOfUsers"
-    //er null. Hvis det er sandt, skabes array'et listOfUsers, hvor der pushes to hard-codede brugere ind.
-    static dummyUsers() {
-        if (localStorage.getItem("storedListOfUsers") == null) {
-            let listOfUsers = [];
-            listOfUsers.push(new Users("Thorn","password","32","København",[]));
-            listOfUsers.push(new Users("Peter","Kanin","224","Eventyrskoven",[]));
-
-            //listOfUsers stringifies, så de kan tilknyttes localStorage
-            let listOfUsersString = JSON.stringify(listOfUsers);
-            localStorage.setItem("storedListOfUsers", listOfUsersString);
-        }
-    };
+//EventUtility-klasse der indeholder static-metoder
+//Static-metoder er defineret på selve klassen, og ikke klasse-indstandser
+class EventUtility {
     //dummyEvents - samme fremgangsmåde som foroven
     static dummyEvent() {
         if (localStorage.getItem("storedListOfEvents") == null) {
@@ -120,12 +107,29 @@ class Utility {
             //denne fremgangsmåde sikrer at det specifikke event bliver valgt og kalder metoden unsubscribe
             cancel.onclick = function () {
                 unsubscribedEvent = joinedEvents[i];
-                Utility.unsubscribe();
+                EventUtility.unsubscribe();
             };
             event.appendChild(cancel);
             document.getElementById("participating_events").appendChild(event);
         }
     };
+    //Metode der viser events bruger selv har lavet
+    static showCreatedEvents() {
+        //for-loop der går gennem alle events
+        for (let i = 0; i < listOfEvents.length; i++) {
+            let host = listOfEvents[i].eventHost;
+            //if-statement der ser om bruger er eventHost
+            if (signedIn.Username === host) {
+                hostedEvents.push(listOfEvents[i].eventName);
+            }
+        }
+        //loop der opretter html-elementer der præsenterer eventss signedIn har lavet
+        for (let j = 0; j<hostedEvents.length; j++) {
+            let events = document.createElement("p");
+            events.innerHTML = hostedEvents[j];
+            document.getElementById("hosted_events").appendChild(events);
+        }
+    }
     //Metode der med et for-loop append'er specifik event-information til specifikke div's i Events.html
     static displayEvents() {
         //for-loop der kører igennem alle events
@@ -174,10 +178,9 @@ class Utility {
 
             //Metode der skal beregne om et event har kapacitet
             //Variabel der tager det valgte index af listOfEvents
-            let events = listOfEvents[i];
+            events = listOfEvents[i];
             //Variabel der bestemmer antal pladser tilbage i et event, ved at trække længden af array'et eventParticipants fra eventCapacity som er et nummer
-            //Se om dette kan blive selvstændig metode
-            let remainingCapacity = events.eventCapacity - events.eventParticipants.length;
+            remainingCapacity = events.eventCapacity - events.eventParticipants.length;
             eventKapacitet.innerHTML = remainingCapacity;
             eventKapacitet.classList.add("eventDisplay");
             document.getElementById("eventKapacitet").appendChild(eventKapacitet);
@@ -191,156 +194,52 @@ class Utility {
             tilmeldEvent.addEventListener('click', function () {
                 //variabel der tager det event der bliver klikket på
                 subscribedEvent = listOfEvents[i];
-                //variabel der tager de nuværende deltagende brugere
-                let currentParticipants = subscribedEvent.eventParticipants;
-
-                //for-loop der ser om bruger allerede deltager i event
-                //var participation;
-                for (let j = 0; j < currentParticipants.length; j++) {
-                    if (signedIn.username === currentParticipants[j]) {
-                        var participation = true;
-                    }
-                }
-                //if-statement der henter resultatet af for-loop foroven
-                if (participation) {
-                    alert("Du deltager allerede i " + subscribedEvent.eventName);
-                } //else if-statement der ser hvis ingen bruger er logget ind
-                else if (signedIn == null) {
-                    alert("Du skal være logget ind for at deltage!");
-                } //else if-statement der ser om der er flere pladser
-                else if (remainingCapacity === 0) {
-                    alert("Der er desværre ikke flere pladser :(");
-                } //hvis alle statements foroven er false, deltager brugeren i det valgte event (koden forneden kaldes)
-                else {
-                    //brugeren der er logget ind, pushes til array'et currentParticipants, som er defineret foroven
-                    currentParticipants.push(signedIn.Username);
-                    //det nye array med deltagere overskriver det gamle, og gemmes i localStorage
-                    subscribedEvent.eventParticipants = currentParticipants;
-                    let listOfEventsString = JSON.stringify(listOfEvents);
-                    localStorage.setItem("storedListOfEvents", listOfEventsString);
-                    alert("Du deltager nu i: " + subscribedEvent.eventName);
-                    window.open("../HTML/Events.html", "_self");
-
-                    //Koden forneden er et godt eksempel på, hvordan vi i udviklingen er blevet klogere
-
-                    /*//Tilføjer det event som signedIn deltager i, til signedIn.joinedEvents
-                    let usersEvents = signedIn.JoinedEvents;
-
-                    //Event'et pushes til brugerens joinedEvents array og erstatter localStorage med key: "signedIn"
-                    usersEvents.push(subscribedEvent.eventName);
-                    let signedInString = JSON.stringify(signedIn);
-                    localStorage.setItem("signedIn", signedInString);*/
-
-                }
+                EventUtility.subscribe();
             });
             document.getElementById("tilmeldEvent").appendChild(tilmeldEvent);
         }
     };
-    //Klasse-metode der kan oprette brugere
-    static createUser() {
-        //Gemmer informationer fra HTML-form i variabler
-        let newUsername = document.getElementById("username").value;
-        let newPassword = document.getElementById("password").value;
-        let newAge = document.getElementById("age").value;
-
-        //Valideringsform fra BIS-øvelsestime
-        var approvedInput = true;
-        var errorMessage = "";
-
-        //Ser om username er tomt, for kort, eller eksisterer i database
-        if (newUsername === "") {
-            approvedInput = false;
-            errorMessage += "Du skal indtaste et brugernavn! \n";
-        }
-
-        //Ser om længde på username passer
-        if (newUsername.length <= 3) {
-            approvedInput = false;
-            errorMessage += "Brugernavnet skal mindst være 4 tegn! \n";
-        }
-
-        //for-loop der ser om brugernavn i forvejen bliver brugt
-        for (let i=0; i<listOfUsers.length; i++) {
-            if (newUsername === listOfUsers[i].username) {
-                approvedInput = false;
-                errorMessage += "Brugernavnet eksisterer allerede :( \nVælg venligst et andet. (se localStorage) \n";
-            }
-        }
-
-        //Ser om alderen er et tal mellem 13 og 99
-        if (newAge < 13 || newAge > 99) {
-            approvedInput = false;
-            errorMessage += "Du skal være over 13 år (og yngre end 99 år) for at oprette en bruger \n";
-        }
-
-        //Ser om password er udfyldt og om det er for kort (skal minimum være 6 tegn)
-        if (newPassword.length <= 5) {
-            approvedInput = false;
-            errorMessage += "Password skal minimum bestå af 6 tegn \n";
-        }
-
-        //Opretter bruger ved true approvedInput
-        if (approvedInput) {
-            //Ny bruger "pushes" til listOfUsers array
-            listOfUsers.push(new Users(newUsername, newPassword, newAge, "", [], []));
-
-            //listOfUsers stringifies og overskriver storedListOfUsers i localStorage
-            let listOfUsersString = JSON.stringify(listOfUsers);
-            localStorage.setItem("storedListOfUsers", listOfUsersString);
-
-            //Giver besked om ny bruger er oprettet
-            alert(newUsername + " er nu oprette som bruger!");
-
-            //Åbner home.html når bruger er oprettet
-            window.open("../HTML/home.html", "_self");
-        } else { alert(errorMessage);}
-    };
-    //login metode
-    static login() {
-        let username = document.getElementById("loginUsername");
-        let password = document.getElementById("loginPassword");
-
-        //for-loop der bruger operators til at se om indtastede værdier stemmer overens med listOfUsers-array, som er gemt i localStorage
-        for (let i=0; i < listOfUsers.length; i++) {
-            if (username.value === listOfUsers[i].username && password.value === listOfUsers[i].password) {
-                //Gemmer bruger som logger ind i localStorage og som string
-                let signedIn = JSON.stringify(listOfUsers[i]);
-                localStorage.setItem("signedIn", signedIn);
-                // Åbner home.html
-                window.open("../HTML/home.html", "_self");
-                return
-            }
-        }
-        alert("Forkert brugernavn eller password :(")
-    };
-    //Metode der bestemmer index af signedIn i listOfUsers
-    static index () {
-        for (let i=0; i<listOfUsers.length; i++) {
-            if (listOfUsers[i].username === signedIn.Username) {
-                return index = i;
-            }
-        }
-    };
-    //Metode der fjerner nøglen "signedIn" og åbner forsiden
-    static logout() {
-        //Først opdateres den specifikke user i storedListOfUsers
-        //Først kaldes index-metoden
-        Utility.index();
-        //Derefter slettes denne bruger fra listOfUsers-array
-        listOfUsers.splice(index, 1, signedIn);
-
-        //Localstorage med key:storedListOfUsers opdateres
-        let listOfUsersString = JSON.stringify(listOfUsers);
-        localStorage.setItem("storedListOfUsers", listOfUsersString);
-        localStorage.removeItem("signedIn");
-        window.open("../HTML/home.html", "_self")
-    };
     //Metode der tilmelder bruger til event
     static subscribe() {
-        for (let i=0; i<listOfEvents.length; i++) {
-            if (subscribedEvent === listOfEvents[i].eventName) {
+        //variabel der tager de nuværende deltagende brugere
+        let currentParticipants = subscribedEvent.eventParticipants;
 
+        //for-loop der ser om bruger allerede deltager i event
+        //var participation;
+        for (let j = 0; j < currentParticipants.length; j++) {
+            if (signedIn.username === currentParticipants[j]) {
+                var participation = true;
             }
+        }
+        //if-statement der henter resultatet af for-loop foroven
+        if (participation) {
+            alert("Du deltager allerede i " + subscribedEvent.eventName);
+        } //else if-statement der ser hvis ingen bruger er logget ind
+        else if (signedIn == null) {
+            alert("Du skal være logget ind for at deltage!");
+        } //else if-statement der ser om der er flere pladser
+        else if (remainingCapacity === 0) {
+            alert("Der er desværre ikke flere pladser :(");
+        } //hvis alle statements foroven er false, deltager brugeren i det valgte event (koden forneden kaldes)
+        else {
+            //brugeren der er logget ind, pushes til array'et currentParticipants, som er defineret foroven
+            currentParticipants.push(signedIn.Username);
+            //det nye array med deltagere overskriver det gamle, og gemmes i localStorage
+            subscribedEvent.eventParticipants = currentParticipants;
+            let listOfEventsString = JSON.stringify(listOfEvents);
+            localStorage.setItem("storedListOfEvents", listOfEventsString);
+            alert("Du deltager nu i: " + subscribedEvent.eventName);
+            window.open("../HTML/Events.html", "_self");
+
+            //Koden forneden er et godt eksempel på, hvordan vi i udviklingen er blevet klogere
+
+            /*//Tilføjer det event som signedIn deltager i, til signedIn.joinedEvents
+            let usersEvents = signedIn.JoinedEvents;
+
+            //Event'et pushes til brugerens joinedEvents array og erstatter localStorage med key: "signedIn"
+            usersEvents.push(subscribedEvent.eventName);
+            let signedInString = JSON.stringify(signedIn);
+            localStorage.setItem("signedIn", signedInString);*/
         }
     }
     //Metode der afmelder bruger fra event
@@ -366,27 +265,17 @@ class Utility {
             }
         }
     }
-    //Metode der beregner event kapacitet
-    static capacity() {
-
-    }
 }
 
-//Metoderne dummyUsers/Events bliver kaldt, så det sikres at der er værdier i localStorage
-Utility.dummyUsers();
-Utility.dummyEvent();
+//Metoden dummyEvents bliver kaldt, så det sikres at der er værdier i localStorage storedListOfEvents
+EventUtility.dummyEvent();
 
 //variabler defineret i global-scope
-var index;
+var events;
+var remainingCapacity;
 var joinedEvents = [];
+var hostedEvents = [];
 var subscribedEvent;
 var unsubscribedEvent;
-var listOfUsers = JSON.parse(localStorage.getItem("storedListOfUsers"));
 var listOfEvents = JSON.parse(localStorage.getItem("storedListOfEvents"));
 
-var signedIn = JSON.parse(localStorage.getItem("signedIn"));
-//Gør objektet signedIn til en indstands af Users-klassen, således at Users-indstands metoder kan bruges
-//if-statement for at undgå syntax-fejl
-if (signedIn) {
-    signedIn = new Users(signedIn.username, signedIn.password, signedIn.age, signedIn.location, signedIn.joinedEvents, signedIn.hostedEvents);
-}

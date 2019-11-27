@@ -10,7 +10,4 @@ class Events {
         this.eventHost = eventHost;
         this.eventParticipants = eventParticipants;
     }
-    //Metode der lader bruger "forlade" event
-    //Lav editEvent
-    //Lav deleteEvent
 }
