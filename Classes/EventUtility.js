@@ -278,4 +278,3 @@ var hostedEvents = [];
 var subscribedEvent;
 var unsubscribedEvent;
 var listOfEvents = JSON.parse(localStorage.getItem("storedListOfEvents"));
-
