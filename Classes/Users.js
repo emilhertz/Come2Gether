@@ -1,10 +1,9 @@
 // User-klasse
 class Users {
-    constructor(username, password, age, location) {
+    constructor(username, password, age) {
         this.username = username;
         this.password = password;
         this.age = age;
-        this.location = location;
     };
     get Username () {
         return this.username;
@@ -14,9 +13,6 @@ class Users {
     }
     get Age () {
         return this.age;
-    }
-    get Location () {
-        return this.location;
     }
     set Password (newPassword) {
         this.password = newPassword;

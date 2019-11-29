@@ -170,5 +170,5 @@ var signedIn = JSON.parse(localStorage.getItem("signedIn"));
 //Gør objektet signedIn til en indstands af Users-klassen, således at Users-indstands metoder kan bruges
 //if-statement for at undgå syntax-fejl
 if (signedIn) {
-    signedIn = new Users(signedIn.username, signedIn.password, signedIn.age, signedIn.location, signedIn.joinedEvents, signedIn.hostedEvents);
+    signedIn = new Users(signedIn.username, signedIn.password, signedIn.age);
 }
