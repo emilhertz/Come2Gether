@@ -91,19 +91,11 @@ class UsersUtility {
         }
         alert("Forkert brugernavn eller password :(")
     };
-    //Metode der bestemmer index af signedIn i listOfUsers
-    static userIndex () {
-        for (let i=0; i<listOfUsers.length; i++) {
-            if (listOfUsers[i].username === signedIn.Username) {
-                return index = i;
-            }
-        }
-    };
-    //Metode der fjerner nøglen "signedIn" og åbner forsiden
+    //Metode der fjerner nøglen "signedIn", opdaterer listOfUsers og åbner forsiden
     static logout() {
         //Den specifikke user i storedListOfUsers opdateres
-        //Først kaldes index-metoden for at bestemme signedIn's index i listOfUsers
-        UsersUtility.userIndex();
+        //Først bestemmes index af signedIn i listOfUsers ved hjælp af findIndex-metoden
+        index = listOfUsers.findIndex(obj => obj.username === signedIn.Username);
         //Derefter opdateres denne bruger fra listOfUsers-array
         listOfUsers.splice(index, 1, signedIn);
 
