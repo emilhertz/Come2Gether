@@ -101,10 +101,10 @@ class UsersUtility {
     };
     //Metode der fjerner nøglen "signedIn" og åbner forsiden
     static logout() {
-        //Først opdateres den specifikke user i storedListOfUsers
-        //Først kaldes index-metoden
+        //Den specifikke user i storedListOfUsers opdateres
+        //Først kaldes index-metoden for at bestemme signedIn's index i listOfUsers
         UsersUtility.userIndex();
-        //Derefter slettes denne bruger fra listOfUsers-array
+        //Derefter opdateres denne bruger fra listOfUsers-array
         listOfUsers.splice(index, 1, signedIn);
 
         //Localstorage med key:storedListOfUsers opdateres
