@@ -82,7 +82,7 @@ class EventUtility {
             alert(eventName + " er nu oprettet som event!");
 
             //Åbner Events.html når event er oprettet
-            window.open("../HTML/Events.html", "_self");
+            window.open("events", "_self");
         } else { alert(errorMessage);}
     };
     //Metode der viser events bruger deltager i
@@ -174,7 +174,7 @@ class EventUtility {
             document.getElementById("eventBeskrivelse").appendChild(eventBeskrivelse);
 
             //samme fremgangsmåde
-            let eventKapacitet = document.createElement("p");
+             let eventKapacitet = document.createElement("p");
 
             //Metode der skal beregne om et event har kapacitet
             //Variabel der tager det valgte index af listOfEvents
@@ -229,7 +229,7 @@ class EventUtility {
             let listOfEventsString = JSON.stringify(listOfEvents);
             localStorage.setItem("storedListOfEvents", listOfEventsString);
             alert("Du deltager nu i: " + subscribedEvent.eventName);
-            window.open("../HTML/Events.html", "_self");
+            window.open("events", "_self");
 
             //Koden forneden er et godt eksempel på, hvordan vi i udviklingen er blevet klogere
 

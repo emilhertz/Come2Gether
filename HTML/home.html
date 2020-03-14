@@ -21,19 +21,19 @@
 <!-- Navigationsbar -->
 <div id="topnav">
     <!--Default navne til siderne -->
-    <a href="home.html">Hjem</a>
-    <a href="Events.html">Events</a>
-    <a class="active" href="about_us.html">Om os</a>
+    <a href="/">Hjem</a>
+    <a href="events">Events</a>
+    <a class="active" href="about">Om os</a>
     <div id="only_login">
-        <a href="createEvent.html">Opret event</a>
-        <a href="minSide.html">Min side</a>
+        <a href="createevent">Opret event</a>
+        <a href="mypage">Min side</a>
     </div>
 
     <div id="logout_button">
     <li style="float:right"><a onclick="UsersUtility.logout()">Log ud</a></li></div>
     <div id="login_button">
-        <li style="float:right"><a href="Login.html">Login</a></li></div>
-    </div>
+        <li style="float:right"><a href="login">Login</a></li></div>
+</div>
 
 <body>
 <script src="../Classes/Users.js"></script>
@@ -45,7 +45,7 @@
     if (signedIn == null) {
         document.write("Med Come2Gether har du mulighed for at møde nye mennesker gennem vores forskellige Event's, der er arrangement af vores store netværk frivillige brugere."
         + "<br><br>" + "Prøv at deltage i alt fra Fodboldturneringer til madlavningskurser, og skab nye venskaber med folk, du ellers aldrig ville have mødt!" + "<br><br>"
-        + "<a href='createUser.html'>Opret en bruger,</a> og deltag i dit første Event allerede i dag!");
+        + "<a href='createuser'>Opret en bruger,</a> og deltag i dit første Event allerede i dag!");
     }
     //else-statement der byder velkommen til eksisterende bruger
     else {document.write("Hej " + signedIn.Username + "!" + "<br><br>" + "Velkommen tilbage. " + "<br><br>")}

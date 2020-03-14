@@ -10,4 +10,7 @@ class Events {
         this.eventHost = eventHost;
         this.eventParticipants = eventParticipants;
     }
+    findLocation() {
+        
+    }
 }

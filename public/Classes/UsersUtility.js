@@ -70,7 +70,7 @@ class UsersUtility {
             alert(newUsername + " er nu oprette som bruger!");
 
             //Åbner home.html når bruger er oprettet
-            window.open("../HTML/home.html", "_self");
+            window.open("/", "_self");
         } else { alert(errorMessage);}
     };
     //login metode
@@ -85,7 +85,7 @@ class UsersUtility {
                 let signedIn = JSON.stringify(listOfUsers[i]);
                 localStorage.setItem("signedIn", signedIn);
                 // Åbner home.html
-                window.open("../HTML/home.html", "_self");
+                window.open("/", "_self");
                 return
             }
         }
@@ -103,7 +103,7 @@ class UsersUtility {
         let listOfUsersString = JSON.stringify(listOfUsers);
         localStorage.setItem("storedListOfUsers", listOfUsersString);
         localStorage.removeItem("signedIn");
-        window.open("../HTML/home.html", "_self")
+        window.open("/", "_self")
     };
     //Metode til at ændre password
     static changePassword() {

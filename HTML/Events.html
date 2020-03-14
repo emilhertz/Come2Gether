@@ -25,20 +25,21 @@
 
 <h1 align="center">Come2Gether</h1>
 
+<!-- Navigationsbar -->
 <div id="topnav">
     <!--Default navne til siderne -->
-    <a href="home.html">Hjem</a>
-    <a href="Events.html">Events</a>
-    <a class="active" href="about_us.html">Om os</a>
-        <div id="only_login">
-            <a href="createEvent.html">Opret event</a>
-            <a href="minSide.html">Min side</a></div>
-
+    <a href="/">Hjem</a>
+    <a href="events">Events</a>
+    <a class="active" href="about">Om os</a>
+    <div id="only_login">
+        <a href="createevent">Opret event</a>
+        <a href="mypage">Min side</a>
+    </div>
 
     <div id="logout_button">
         <li style="float:right"><a onclick="UsersUtility.logout()">Log ud</a></li></div>
     <div id="login_button">
-        <li style="float:right"><a href="Login.html">Login</a></li></div>
+        <li style="float:right"><a href="login">Login</a></li></div>
 </div>
 
 <!--Onload kalder displayEvents metoden fra Events-klassen når siden bliver loadet-->
